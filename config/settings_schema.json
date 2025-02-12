@@ -1,0 +1,77 @@
+
+   [ {
+      "name": "Header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sale_banner_text",
+          "label": "Sale Banner Text",
+          "default": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!"
+        },
+        {
+          "type": "text",
+          "id": "shop_now_text",
+          "label": "Shop Now Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "shop_now_link",
+          "label": "Shop Now Link",
+          "default": "/"
+        },
+        {
+          "type": "text",
+          "id": "logo_text",
+          "label": "Logo Text",
+          "default": "Exclusive"
+        },
+        {
+          "type": "image_picker",
+          "id": "hamburger_icon",
+          "label": "Hamburger Icon"
+          
+        },
+        {
+          "type": "image_picker",
+          "id": "wishlist_icon",
+          "label": "Wishlist Icon"
+         
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_icon",
+          "label": "Cart Icon"
+          
+        },
+        {
+          "type": "image_picker",
+          "id": "close_icon",
+          "label": "Close Icon"
+          
+        },
+        {
+          "type": "text",
+          "id": "search_placeholder",
+          "label": "Search Placeholder",
+          "default": "Search Here!"
+        },
+        {
+          "type": "text",
+          "id": "categories_title",
+          "label": "Categories Title",
+          "default": "Categories"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Main Menu"
+        },
+        {
+          "type": "link_list",
+          "id": "categories_menu",
+          "label": "Categories Menu"
+        }
+      ]
+    }
+]

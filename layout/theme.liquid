@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <html lang="{{ shop.locale }}">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{{ page_title }}</title>
+    
+      <!-- CSS Files -->
+      {{ 'webflow.css' | asset_url | stylesheet_tag }}
+      {{ 'normalize.css' | asset_url | stylesheet_tag }}
+      {{ 'for-shopify-theme.webflow.css' | asset_url | stylesheet_tag }}
+    
+      <!-- Shopify Required Scripts -->
+      {{ content_for_header }}
+    </head>
+    <body class="template-{{ template | split: '.' | first }}">
+      <!-- Header Section -->
+      {% section 'header' %}
+    
+      <!-- Main Content -->
+      <main id="MainContent" role="main" tabindex="-1">
+        {{ content_for_layout }}
+
+      </main>
+    
+      <!-- Footer Section -->
+      {% section 'footer' %}
+    
+      <!-- JS File -->
+      {{ 'webflow.js' | asset_url | script_tag  defer}}
+      {{ 'customjs.js' | asset_url | script_tag  defer}}
+      
+        
+    </body>
+    </html>

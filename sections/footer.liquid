@@ -1,0 +1,306 @@
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_title",
+      "label": "Footer Title",
+      "default": "Exclusive"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_text",
+      "label": "Subscribe Text",
+      "default": "Get 10% off your first order"
+    },
+    {
+      "type": "text",
+      "id": "footer_description",
+      "label": "Footer Description",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "thank_you_text",
+      "label": "Thank You Text",
+      "default": "Thank you! Your submission has been received!"
+    },
+    {
+      "type": "text",
+      "id": "error_text",
+      "label": "Error Text",
+      "default": "Oops! Something went wrong while submitting the form."
+    },
+    {
+      "type": "text",
+      "id": "support_title",
+      "label": "Support Title",
+      "default": "Support"
+    },
+    {
+      "type": "text",
+      "id": "support_address",
+      "label": "Support Address",
+      "default": "111 Bijoy Sarani, Dhaka,</br> DH 1515, Bangladesh."
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "exclusive@gmail.com"
+    },
+    {
+      "type": "text",
+      "id": "support_phone",
+      "label": "Support Phone",
+      "default": "+88015-88888-9999"
+    },
+    {
+      "type": "text",
+      "id": "account_title",
+      "label": "Account Title",
+      "default": "Account"
+    },
+    {
+      "type": "url",
+      "id": "account_link",
+      "label": "Account Link"
+    },
+    {
+      "type": "text",
+      "id": "account_text",
+      "label": "My Account Text",
+      "default": "My Account"
+    },
+    {
+      "type": "url",
+      "id": "login_link",
+      "label": "Login/Register Link"
+    },
+    {
+      "type": "text",
+      "id": "login_text",
+      "label": "Login/Register Text",
+      "default": "Login / Register"
+    },
+    {
+      "type": "url",
+      "id": "cart_link",
+      "label": "Cart Link"
+    },
+    {
+      "type": "text",
+      "id": "cart_text",
+      "label": "Cart Text",
+      "default": "Cart"
+    },
+    {
+      "type": "url",
+      "id": "wishlist_link",
+      "label": "Wishlist Link"
+    },
+    {
+      "type": "text",
+      "id": "wishlist_text",
+      "label": "Wishlist Text",
+      "default": "Wishlist"
+    },
+    {
+      "type": "url",
+      "id": "shop_link",
+      "label": "Shop Link"
+    },
+    {
+      "type": "text",
+      "id": "shop_text",
+      "label": "Shop Text",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "quick_link_title",
+      "label": "Quick Link Title",
+      "default": "Quick Links"
+    },
+    {
+      "type": "url",
+      "id": "privacy_policy_link",
+      "label": "Privacy Policy Link"
+    },
+    {
+      "type": "text",
+      "id": "privacy_policy_text",
+      "label": "Privacy Policy Text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "terms_of_use_link",
+      "label": "Terms of Use Link"
+    },
+    {
+      "type": "text",
+      "id": "terms_of_use_text",
+      "label": "Terms of Use Text",
+      "default": "Terms Of Use"
+    },
+    {
+      "type": "url",
+      "id": "faq_link",
+      "label": "FAQ Link"
+    },
+    {
+      "type": "text",
+      "id": "faq_text",
+      "label": "FAQ Text",
+      "default": "FAQ"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact Link"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Text",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "virtual_media_title",
+      "label": "Virtual Media Title",
+      "default": "Follow Us"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "facebook_icon",
+      "label": "Facebook Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "twitter_icon",
+      "label": "Twitter Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "instagram_icon",
+      "label": "Instagram Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "linkedin_icon",
+      "label": "LinkedIn Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "copyright_icon",
+      "label": "Copyright Icon"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Copyright 2025. All rights reserved."
+    }
+  ]
+}
+{% endschema %}
+
+<section class="footer">
+    <div class="footer-wrapper">
+      <div class="footer-content">
+        <!-- Subscribe Section -->
+        <div class="f-content-1">
+          <h3 class="footer-head">{{ section.settings.footer_title }}</h3>
+          <div class="subscribe-text">{{ section.settings.subscribe_text }}</div>
+          <div class="footer-text">{{ section.settings.footer_description }}</div>
+          <div class="w-form">
+            <form id="email-form" name="email-form" method="get">
+              <input class="text-field-3 w-input" maxlength="256" name="email" placeholder="{{ section.settings.email_placeholder }}" type="email" required>
+            </form>
+            <div class="w-form-done">
+              <div>{{ section.settings.thank_you_text }}</div>
+            </div>
+            <div class="w-form-fail">
+              <div>{{ section.settings.error_text }}</div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Support Section -->
+        <div class="f-content-1">
+          <h3 class="footer-head">{{ section.settings.support_title }}</h3>
+          <div class="footer-text">{{ section.settings.support_address }}</div>
+          <div class="footer-text">{{ section.settings.support_email }}</div>
+          <div class="footer-text">{{ section.settings.support_phone }}</div>
+        </div>
+  
+        <!-- Account Section -->
+        <div class="f-content-1">
+          <h3 class="footer-head">{{ section.settings.account_title }}</h3>
+          <a href="{{ section.settings.account_link }}" class="footer-text">{{ section.settings.account_text }}</a>
+          <a href="{{ section.settings.login_link }}" class="footer-text">{{ section.settings.login_text }}</a>
+          <a href="{{ section.settings.cart_link }}" class="footer-text">{{ section.settings.cart_text }}</a>
+          <a href="{{ section.settings.wishlist_link }}" class="footer-text">{{ section.settings.wishlist_text }}</a>
+          <a href="{{ section.settings.shop_link }}" class="footer-text">{{ section.settings.shop_text }}</a>
+        </div>
+  
+        <!-- Quick Link Section -->
+        <div class="f-content-1">
+          <h3 class="footer-head">{{ section.settings.quick_link_title }}</h3>
+          <a href="{{ section.settings.privacy_policy_link }}" class="footer-text">{{ section.settings.privacy_policy_text }}</a>
+          <a href="{{ section.settings.terms_of_use_link }}" class="footer-text">{{ section.settings.terms_of_use_text }}</a>
+          <a href="{{ section.settings.faq_link }}" class="footer-text">{{ section.settings.faq_text }}</a>
+          <a href="{{ section.settings.contact_link }}" class="footer-text">{{ section.settings.contact_text }}</a>
+        </div>
+  
+        <!-- Virtual Media Section -->
+        <div class="f-content-1">
+          <h3 class="footer-head">{{ section.settings.virtual_media_title }}</h3>
+          <div class="social-block">
+            <a href="{{ section.settings.facebook_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.facebook_icon | image_url: 'original' | default: 'assets/Icon-Facebook.png' }}" alt="Facebook" class="fb-icon"></a>
+            <a href="{{ section.settings.twitter_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.twitter_icon | image_url: 'original' | default: 'assets/Icon-Twitter.png' }}" alt="Twitter" class="twitter-icon"></a>
+            <a href="{{ section.settings.instagram_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.instagram_icon | image_url: 'original' | default: 'assets/icon-instagram.png' }}" alt="Instagram" class="instagram-icon"></a>
+            <a href="{{ section.settings.linkedin_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.linkedin_icon | image_url: 'original' | default: 'assets/Icon-Linkedin.png' }}" alt="LinkedIn" class="linkedin-icon"></a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Copyright Section -->
+      <div class="copyright-block">
+        <img loading="lazy"  src="{{ section.settings.copyright_icon | image_url: 'original' | default: 'assets/icon-copyright.png' }}" alt="Copyright Icon" class="image-2">
+        <div class="text-block-13">{{ section.settings.copyright_text }}</div>
+      </div>
+    </div>
+  </section>
+  
+  
+  

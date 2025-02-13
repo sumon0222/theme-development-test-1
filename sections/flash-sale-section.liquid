@@ -1,0 +1,130 @@
+{% schema %}
+{
+    "name": "Flash Sale",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Flash Sales"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "product_limit",
+        "label": "Number of products to show",
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "default": 6
+      },
+      {
+        "type": "range",
+        "id": "discount_percentage",
+        "label": "Discount Percentage",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 35
+      }
+    ],
+    "presets": [
+      {
+        "name": "Flash Sale"
+      }
+    ]
+  }
+{% endschema %}
+
+{% comment %} snippets/flash-sale.liquid {% endcomment %}
+
+<section class="flash-sale-section">
+    <div class="flash-sale-wrapper">
+      <div class="flash-sales-countdown">
+        <div class="todays-sale">Today’s</div>
+        <div class="countdown-timer">
+          <h2 class="flash-sales-heading res-sec-head">{{ section.settings.heading }}</h2>
+          <div class="timer-and-arrow">
+            <div class="timer">
+              <div id="days" class="days">Days</div>
+              <div id="hours" class="hours">Hours</div>
+              <div id="minutes" class="minutes">Minutes</div>
+              <div id="seconds" class="seconds-ms">Seconds</div>
+            </div>
+            <div class="arrows">
+              <img loading="lazy" src="{{ 'left-arrow.png' | asset_url }}" alt="Left Arrow" class="flash-left-arrow">
+              <img loading="lazy" src="{{ 'right-arrow.png' | asset_url }}" alt="Right Arrow" class="flash-right-arrow">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-sales-products-lists">
+        {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
+          <div class="product1">
+            <div class="product1-top-container">
+              <div class="discount-and-wishlist-container">
+                <div class="discount">
+                  <div class="text-block-6">-{{ section.settings.discount_percentage }}%</div>
+                </div>
+                <div class="wish-icons">
+                  <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="wish-img">
+                  <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
+                </div>
+              </div>
+              <div class="add-to-cart-btn-container">
+                <a href="{{ product.url }}" class="add-to-cart-btn w-button">Add to Cart</a>
+              </div>
+            </div>
+            <div class="product1-down">
+              <div class="text-block-7">{{ product.title }}</div>
+              <div class="pricings">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="new-price">{{ product.price | money }}</div>
+              </div>
+              <div class="rating">
+                <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating">
+                <div class="text-block-8">({{ product.metafields.reviews.rating_count }})</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="all-products-btn">
+        <a href="{{ collections[section.settings.collection].url }}" class="flas-sales-view-all-btn w-button">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var mySwiper = new Swiper('.flash-sales-products-lists', {
+          loop: true,
+          navigation: {
+            nextEl: '.flash-right-arrow',
+            prevEl: '.flash-left-arrow',
+          },
+          slidesPerView: 4,
+          spaceBetween: 10,
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+          }
+        });
+      });
+    </script>

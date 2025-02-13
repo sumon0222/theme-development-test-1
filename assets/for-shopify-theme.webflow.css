@@ -351,7 +351,7 @@ display:block !important;
 
 .slider {
   background-color: #000;
-  background-image: url('../images/hero-slider-background.png');
+  background-image: url('hero-slider-background.png');
   background-position: 100%;
   background-repeat: no-repeat;
   background-size: auto;
@@ -565,7 +565,7 @@ display:block !important;
 
 .todays-sale {
   color: #db4444;
-  background-image: url('../images/Rectangle-17_1Rectangle 17.png');
+  background-image: url('rectangle.png');
   background-position: 0%;
   background-repeat: no-repeat;
   background-size: contain;

@@ -1,0 +1,122 @@
+{% schema %}
+{
+  "name": "New Arrival Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "New Arrival"
+    },
+    {
+      "type": "text",
+      "id": "ps5_title",
+      "label": "PlayStation 5 Title",
+      "default": "PlayStation 5"
+    },
+    {
+      "type": "text",
+      "id": "ps5_description",
+      "label": "PlayStation 5 Description",
+      "default": "Black and White version of the PS5 coming out on sale."
+    },
+    {
+      "type": "url",
+      "id": "ps5_link",
+      "label": "PlayStation 5 Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "women_collection_title",
+      "label": "Women’s Collection Title",
+      "default": "Women’s Collections"
+    },
+    {
+      "type": "text",
+      "id": "women_collection_description",
+      "label": "Women’s Collection Description",
+      "default": "Featured woman collections that give you another vibe."
+    },
+    {
+      "type": "url",
+      "id": "women_collection_link",
+      "label": "Women’s Collection Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "speakers_title",
+      "label": "Speakers Title",
+      "default": "Speakers"
+    },
+    {
+      "type": "text",
+      "id": "speakers_description",
+      "label": "Speakers Description",
+      "default": "Amazon wireless speakers"
+    },
+    {
+      "type": "url",
+      "id": "speakers_link",
+      "label": "Speakers Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "perfume_title",
+      "label": "Perfume Title",
+      "default": "Perfume"
+    },
+    {
+      "type": "text",
+      "id": "perfume_description",
+      "label": "Perfume Description",
+      "default": "GUCCI INTENSE OUD EDP"
+    },
+    {
+      "type": "url",
+      "id": "perfume_link",
+      "label": "Perfume Link",
+      "default": "/"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="new-arrival-section">
+  <div class="new-arrival-wrapper">
+    <div class="new-arrival-up-block">
+      <div class="todays-sale category-text">Featured</div>
+      <div class="browse-by-category new-arrived">
+        <h2 class="new-arrival-heading">{{ section.settings.section_heading }}</h2>
+      </div>
+    </div>
+    <div class="new-arrival-down-block">
+      <div class="new-arrival-down-left-block">
+        <h3 class="playstation-head">{{ section.settings.ps5_title }}</h3>
+        <div class="playstation-text">{{ section.settings.ps5_description }}</div>
+        <a href="{{ section.settings.ps5_link }}" class="playstation-shop-link">Shop Now</a>
+      </div>
+      <div class="new-arrival-down-lright-block">
+        <div class="new-arrival-down-lright-up-block">
+          <h3 class="playstation-head">{{ section.settings.women_collection_title }}</h3>
+          <div class="playstation-text">{{ section.settings.women_collection_description }}</div>
+          <a href="{{ section.settings.women_collection_link }}" class="playstation-shop-link">Shop Now</a>
+        </div>
+        <div class="new-arrival-down-lright-down-block">
+          <div class="new-adrd-left">
+            <h3 class="playstation-head">{{ section.settings.speakers_title }}</h3>
+            <div class="playstation-text playstation0speaker-text">{{ section.settings.speakers_description }}</div>
+            <a href="{{ section.settings.speakers_link }}" class="playstation-shop-link">Shop Now</a>
+          </div>
+          <div class="new-adrd-right">
+            <h3 class="playstation-head">{{ section.settings.perfume_title }}</h3>
+            <div class="playstation-text playstation0speaker-text">{{ section.settings.perfume_description }}</div>
+            <a href="{{ section.settings.perfume_link }}" class="playstation-shop-link">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+{% schema %}
+{
+  "name": "Best Selling Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Best Selling Products"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "This Month"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection",
+      "info": "Choose a collection to display products from."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Number of Products",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Selling Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="best-selling-products-section">
+  <div class="best-selling-products-wrapper">
+    <div class="best-selling-up-block">
+      <div class="todays-sale">{{ section.settings.sub_heading }}</div>
+      <div class="browse-by-category best-selling-view-btn">
+        <h2 class="best-selling-heading">{{ section.settings.section_heading }}</h2>
+        <a href="{{ section.settings.button_link | default: '#' }}" class="best-selling-view-all-btn w-button">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    </div>
+
+    <div class="best-selling-products-lists">
+      {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
+        <div class="bs-product1">
+          <div class="bs-product-top-container">
+            <div class="bs-wishlists-icon">
+              <div class="bs-wish-icons">
+                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img">
+                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view">
+              </div>
+            </div>
+            <div class="add-to-cart-btn-container">
+              <form method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button type="submit" class="add-to-cart-btn w-button">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+          <div class="bs-product-down-container">
+            <div class="text-block-7">{{ product.title }}</div>
+            <div class="pricings">
+              {% if product.compare_at_price > product.price %}
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+              {% endif %}
+              <div class="new-price">{{ product.price | money }}</div>
+            </div>
+            <div class="rating">
+              <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating" class="image-11">
+              <div class="text-block-10">({{ product.metafields.reviews.count | default: 67 }})</div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>No products available in this collection.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

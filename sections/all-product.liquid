@@ -1,0 +1,94 @@
+{% schema %}
+{
+  "name": "Our Products",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Number of products to display",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 8
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="our-products-section">
+  <div class="our-products-wrapper">
+    <div class="our-products-up-block">
+      <div class="todays-sale category-text">Our Products</div>
+      <div class="browse-by-category">
+        <h2 class="best-selling-heading">Explore Our Products</h2>
+        <div class="our-products-arrows">
+          <button class="our-products-left-arrow" aria-label="Scroll left">
+            <img src="{{ 'left-arrow.png' | asset_url }}" alt="Left Arrow">
+          </button>
+          <button class="our-products-right-arrow" aria-label="Scroll right">
+            <img src="{{ 'right-arrow.png' | asset_url }}" alt="Right Arrow">
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="our-products-container">
+      <div class="our-products-lists">
+        {% assign products = collections[section.settings.collection].products %}
+        {% for product in products limit: section.settings.products_limit %}
+          <div class="our-product">
+            <div class="our-product-top-container" style="background-image: url('{{ product.featured_image | image_url: 'medium' }}');">
+              <div class="bs-wishlists-icon">
+                <div class="bs-wish-icons">
+                  <img src="{{ 'wishlist.png' | asset_url }}" alt="Wishlist" class="wish-img">
+                  <img src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
+                </div>
+              </div>
+              <div class="add-to-cart-btn-container">
+                <a href="{{ product.url }}" class="add-to-cart-btn">Add to Cart</a>
+              </div>
+            </div>
+            <div class="our-product-down-container">
+              <div class="text-block-7">{{ product.title }}</div>
+              <div class="pricings">
+                {% if product.compare_at_price > product.price %}
+                  <div class="old-price">{{ product.compare_at_price | money }}</div>
+                {% endif %}
+                <div class="new-price">{{ product.price | money }}</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="all-products-btn our-pd">
+      <a href="{{ collections[section.settings.collection].url }}" class="flas-sales-view-all-btn">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let productsWrapper = document.querySelector(".our-products-container");
+    let leftArrow = document.querySelector(".our-products-left-arrow");
+    let rightArrow = document.querySelector(".our-products-right-arrow");
+
+    if (productsWrapper && leftArrow && rightArrow) {
+      const scrollAmount = 300; // Adjust scroll amount as needed
+
+      rightArrow.addEventListener("click", function() {
+        productsWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      });
+
+      leftArrow.addEventListener("click", function() {
+        productsWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      });
+    }
+  });
+</script>

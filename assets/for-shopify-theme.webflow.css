@@ -492,7 +492,6 @@ display:block !important;
 
 .product1-top-container {
   background-color: #f5f5f5;
-  background-image: url('../images/HAVIT-HV-G92-Gamepad.png');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto;
@@ -619,19 +618,16 @@ display:block !important;
 }
 
 .flash-sales-products-lists {
-  box-sizing: border-box;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
-  object-fit: fill;
-  flex-flow: row-reverse;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: 0;
-  margin-right: -400%;
   display: flex;
-  position: static;
-  left: auto;
-  overflow: visible;
+  gap: 30px; /* Space between products */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  padding-bottom: 20px; /* Add some padding to avoid cutting off content */
+  margin-right: -400%; /* Extend the slider to the right */
+  position: relative;
+}
+.flash-sales-products-lists::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for a cleaner look */
 }
 
 .flas-sales-view-all-btn {
@@ -660,6 +656,7 @@ display:block !important;
 }
 
 .product1 {
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
   width: 270px;
   height: 350px;
 }
@@ -686,8 +683,10 @@ display:block !important;
 
 .svg-image-categoy:hover {
   color: #fff;
-  background-color: #db4444;
+   fill: #fff;
+   stroke: #fff;
 }
+
 
 .best-selling-up-block {
   padding-bottom: 60px;
@@ -696,8 +695,22 @@ display:block !important;
 .category-lists {
   grid-column-gap: 30px;
   grid-row-gap: 30px;
-  flex-flow: row;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(var(--items-per-row,6), 1fr);
+
+}
+
+
+@media (max-width: 1024px) {
+  .category-lists {
+    grid-template-columns: repeat(var(--items-per-row-tablet), 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .category-lists {
+    grid-template-columns: repeat(var(--items-per-row-mobile), 1fr);
+  }
 }
 
 .categories-wrapper {
@@ -1743,7 +1756,6 @@ display:block !important;
     grid-column-gap: 15px;
     grid-row-gap: 15px;
     justify-content: center;
-    align-items: flex-start;
   }
 
   .categories-wrapper {

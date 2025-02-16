@@ -1,0 +1,108 @@
+{% schema %}
+{
+  "name": "Categories Music Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Enhance Your Music Experience"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Categories"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end_date",
+      "label": "Countdown End Date",
+      "default": "2025-12-31",
+      "info": "Format: YYYY-MM-DD"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Buy Now!"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories Music Section"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="categories-music-section">
+  <div class="categories-music-section-wrapper">
+    <div class="ms-left">
+      <div class="ms-text">{{ section.settings.sub_heading }}</div>
+      <h2 class="ms-header">{{ section.settings.section_heading }}</h2>
+      <div class="ms-timer-div">
+        <div class="days-ms" id="days">00</div>
+        <div class="hours-ms days-ms" id="hours">00</div>
+        <div class="minutes-ms days-ms" id="minutes">00</div>
+        <div class="seconds-ms days-ms" id="seconds">00</div>
+      </div>
+      <a href="{{ section.settings.button_link | default: '#' }}" class="ms-buy-now-btn w-button">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+    <div class="ms-right">
+      {% if section.settings.section_image %}
+        <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Music Image" class="image-14">
+      {% else %}
+        <img src="{{ 'jbl2.png' | asset_url }}" alt="Default Music Image" class="image-14">
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function startCountdown(endDate) {
+      let countDownDate = new Date(endDate).getTime();
+
+      function updateTimer() {
+        let now = new Date().getTime();
+        let timeLeft = countDownDate - now;
+
+        if (timeLeft <= 0) {
+          document.getElementById("days").innerHTML = "00";
+          document.getElementById("hours").innerHTML = "00";
+          document.getElementById("minutes").innerHTML = "00";
+          document.getElementById("seconds").innerHTML = "00";
+          return;
+        }
+
+        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
+        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
+        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
+      }
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    }
+
+    startCountdown("{{ section.settings.countdown_end_date }}");
+  });
+</script>

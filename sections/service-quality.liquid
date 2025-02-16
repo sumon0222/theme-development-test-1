@@ -1,0 +1,78 @@
+{% schema %}
+{
+  "name": "Service Quality Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "service1_title",
+      "label": "First Service Title",
+      "default": "FREE AND FAST DELIVERY"
+    },
+    {
+      "type": "text",
+      "id": "service1_description",
+      "label": "First Service Description",
+      "default": "Free delivery for all orders over $140"
+    },
+    {
+      "type": "image_picker",
+      "id": "service1_image",
+      "label": "First Service Image"
+    },
+    {
+      "type": "text",
+      "id": "service2_title",
+      "label": "Second Service Title",
+      "default": "24/7 CUSTOMER SERVICE"
+    },
+    {
+      "type": "text",
+      "id": "service2_description",
+      "label": "Second Service Description",
+      "default": "Friendly 24/7 customer support"
+    },
+    {
+      "type": "image_picker",
+      "id": "service2_image",
+      "label": "Second Service Image"
+    },
+    {
+      "type": "text",
+      "id": "service3_title",
+      "label": "Third Service Title",
+      "default": "MONEY BACK GUARANTEE"
+    },
+    {
+      "type": "text",
+      "id": "service3_description",
+      "label": "Third Service Description",
+      "default": "We return money within 30 days"
+    },
+    {
+      "type": "image_picker",
+      "id": "service3_image",
+      "label": "Third Service Image"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="service-quality-section">
+  <div class="service-quality-wrapper">
+    <div class="sevice1">
+      <img loading="lazy" src="{{ section.settings.service1_image | image_url }}" alt="{{ section.settings.service1_title }}" class="image-23">
+      <h3 class="heading-2">{{ section.settings.service1_title }}</h3>
+      <div class="text-block-12">{{ section.settings.service1_description }}</div>
+    </div>
+    <div class="sevice1">
+      <img loading="lazy" src="{{ section.settings.service2_image | image_url }}" alt="{{ section.settings.service2_title }}" class="image-24">
+      <h3 class="heading-2">{{ section.settings.service2_title }}</h3>
+      <div class="text-block-12">{{ section.settings.service2_description }}</div>
+    </div>
+    <div class="sevice1">
+      <img loading="lazy" src="{{ section.settings.service3_image | image_url }}" alt="{{ section.settings.service3_title }}" class="image-25">
+      <h3 class="heading-2">{{ section.settings.service3_title }}</h3>
+      <div class="text-block-12">{{ section.settings.service3_description }}</div>
+    </div>
+  </div>
+</section>

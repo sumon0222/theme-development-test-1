@@ -84,6 +84,13 @@
           "default": "no-repeat"
         },
         {
+          "type": "text",
+          "id": "background_position",
+          "label": "Background Position",
+          "default": "center",
+          "info": "You can use keywords (e.g., 'top', 'left center') or percentages/pixels (e.g., '50% 20%', '100px 200px')"
+        },
+        {
           "type": "range",
           "id": "padding",
           "label": "Padding",
@@ -155,6 +162,7 @@
             "background_image": "",
             "background_size": "cover",
             "background_repeat": "no-repeat",
+            "background_position": "center",
             "padding": 20,
             "margin": 0,
             "height": 500,
@@ -169,6 +177,7 @@
             "background_image": "",
             "background_size": "cover",
             "background_repeat": "no-repeat",
+            "background_position": "center",
             "padding": 20,
             "margin": 0,
             "height": 500,
@@ -203,20 +212,20 @@
           {% for block in section.blocks %}
             <div class="slide slide-{{ forloop.index }} w-slide" style="
               {% if block.settings.background_image != blank %}
-                background-image: url('{{ block.settings.background_image | img_url: 'master' }}');
+                background-image: url('{{ block.settings.background_image | image_url: 'master' }}');
               {% else %}
-                background-image: url('{{ 'default-background.jpg' | asset_url }}');
+                background-image: url('{{ 'hero-slider-background.png' | asset_url }}');
               {% endif %}
               background-size: {{ block.settings.background_size }};
               background-repeat: {{ block.settings.background_repeat }};
-              background-position: center;
+              background-position: {{ block.settings.background_position }};
               padding: {{ block.settings.padding }}px;
               margin: {{ block.settings.margin }}px;
               height: {{ block.settings.height }}px;
             ">
               <div class="slider-text-img">
                 {% if block.settings.image != blank %}
-                  <img loading="lazy" src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt }}" class="image-4">
+                  <img loading="lazy" src="{{ block.settings.image | image_url: 'master' }}" alt="{{ block.settings.image.alt }}" class="image-4">
                 {% else %}
                   <img loading="lazy" src="{{ 'hero-apple-logo.png' | asset_url }}" alt="Default Image" class="image-4">
                 {% endif %}
@@ -236,7 +245,11 @@
         <div class="right-arrow w-slider-arrow-right">
           <div class="w-icon-slider-right"></div>
         </div>
-        <div class="slide-nav w-slider-nav w-round"></div>
+        <div class="slide-nav w-slider-nav w-round">
+          {% for block in section.blocks %}
+            <div class="w-slider-dot {% if forloop.first %}w-active{% endif %}" data-wf-ignore="" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" role="button" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" style="margin-left: 5px; margin-right: 5px;"></div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
@@ -248,7 +261,7 @@
     const slides = document.querySelectorAll('.w-slide');
     const prevArrow = document.querySelector('.w-slider-arrow-left');
     const nextArrow = document.querySelector('.w-slider-arrow-right');
-    const dots = document.querySelectorAll('.w-slider-nav .w-round');
+    const dots = document.querySelectorAll('.w-slider-nav .w-slider-dot');
 
     let currentIndex = 0;
 
@@ -263,7 +276,9 @@
     // Function to update the active dot
     function updateDots(index) {
       dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+        dot.classList.toggle('w-active', i === index);
+        dot.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+        dot.setAttribute('tabindex', i === index ? '0' : '-1');
       });
     }
 
@@ -297,26 +312,3 @@
     showSlide(currentIndex);
   });
 </script>
-
-<style>
-  /* Slider Navigation Dots */
-  .w-slider-nav {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .w-slider-nav .w-round {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: #FFFFFF;
-    border-radius: 50%;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .w-slider-nav .w-round.active {
-    background: #000000; /* Active dot color */
-  }
-</style>

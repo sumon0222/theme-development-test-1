@@ -223,7 +223,7 @@ display:block !important;
 .header-nav-wrapper {
   grid-column-gap: 148px;
   grid-row-gap: 148px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 1170px;
   max-width: none;
@@ -434,15 +434,7 @@ display:block !important;
   text-decoration-thickness: 1px;
 }
 
-.slide {
-  background-image: url('../images/hero-slider-background.png');
-  background-position: 100%;
-  background-repeat: no-repeat;
-  background-size: auto;
-  padding-top: 58px;
-  padding-bottom: 47px;
-  padding-left: 64px;
-}
+
 
 .wish-icons {
   grid-column-gap: 12px;
@@ -561,6 +553,21 @@ display:block !important;
   padding-right: 12px;
   display: flex;
 }
+.wishlist-container , .cart-container{
+  position: relative;
+  display: inline-block;
+}
+.wishlist-count , .cart-count{
+  position: absolute;
+  top: -15px;
+  right: 50%;
+  transform: translatex(50%);
+  color: #db4444;
+  font-weight: bold; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .todays-sale {
   color: #db4444;
@@ -620,10 +627,10 @@ display:block !important;
 .flash-sales-products-lists {
   display: flex;
   gap: 30px; /* Space between products */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  scroll-behavior: smooth; /* Smooth scrolling */
+  overflow-x: hidden;
+ 
   padding-bottom: 20px; /* Add some padding to avoid cutting off content */
-  margin-right: -400%; /* Extend the slider to the right */
+   margin-right: -400%; /*Extend the slider to the right */
   position: relative;
 }
 .flash-sales-products-lists::-webkit-scrollbar {

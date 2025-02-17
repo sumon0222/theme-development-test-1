@@ -67,6 +67,18 @@
         "type": "link_list",
         "id": "categories_menu",
         "label": "Categories Menu"
+      },
+      {
+        "type": "url",
+        "id": "wishlist_url",
+        "label": "Wishlist URL",
+        "default": "/"
+      },
+      {
+        "type": "url",
+        "id": "cart_url",
+        "label": "Cart URL",
+        "default": "/"
       }
     ],
     "presets": [
@@ -144,41 +156,53 @@
               </form>
             </div>
             <div class="wishlist-cart-icon">
-              {% if section.settings.wishlist_icon %}
-                <img 
-                    height="auto"
-                width="auto"
-                  src="{{ section.settings.wishlist_icon | image_url: '50x' }}" 
-                  alt="Wishlist"
-                  class="wishlist-icon"
-                >
-              {% else %}
-                <img 
-                    height="auto"
-                width="auto"
-                  src="{{ 'wishlist.png' | asset_url }}" 
-                  alt="Default Wishlist"
-                  class="wishlist-icon"
-                >
-              {% endif %}
-  
-              {% if section.settings.cart_icon %}
-                <img 
-                    height="auto"
-                width="auto"
-                  src="{{ section.settings.cart_icon | image_url: '50x' }}" 
-                  alt="Cart"
-                  class="cart-icon"
-                >
-              {% else %}
-                <img 
-                    height="auto"
-                width="auto"
-                  src="{{ 'Cart.png' | asset_url }}" 
-                  alt="Default Cart"
-                  class="cart-icon"
-                >
-              {% endif %}
+              <!-- Wishlist Icon with Count -->
+              <div class="wishlist-container">
+                <a href="{{ section.settings.wishlist_url }}">
+                  {% if section.settings.wishlist_icon %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ section.settings.wishlist_icon | image_url: '50x' }}" 
+                      alt="Wishlist"
+                      class="wishlist-icon"
+                    >
+                  {% else %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ 'wishlist.png' | asset_url }}" 
+                      alt="Default Wishlist"
+                      class="wishlist-icon"
+                    >
+                  {% endif %}
+                  <span class="wishlist-count" id="wishlist-count">0</span>
+                </a>
+              </div>
+
+              <!-- Cart Icon with Count -->
+              <div class="cart-container">
+                <a href="{{ section.settings.cart_url }}">
+                  {% if section.settings.cart_icon %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ section.settings.cart_icon | image_url: '50x' }}" 
+                      alt="Cart"
+                      class="cart-icon"
+                    >
+                  {% else %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ 'Cart.png' | asset_url }}" 
+                      alt="Default Cart"
+                      class="cart-icon"
+                    >
+                  {% endif %}
+                  <span class="cart-count" id="cart-count">0</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -189,16 +213,16 @@
         <div class="head-popup-wrapper">
           {% if section.settings.close_icon %}
             <img 
-                height="auto"
-                width="auto"
+              height="auto"
+              width="auto"
               src="{{ section.settings.close_icon | image_url: '50x' }}" 
               alt="Close Menu"
               class="image-3"
             >
           {% else %}
             <img 
-                height="auto"
-                width="auto"
+              height="auto"
+              width="auto"
               src="{{ 'close.png' | asset_url }}" 
               alt="Default Close Menu"
               class="image-3"
@@ -257,31 +281,46 @@
     </div>
   </section>
 
-  {% comment %} js for mobile nav pop up {% endcomment %}
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Select elements
-        const hamburger = document.querySelector(".hamburger-icon");
-        const closeIcon = document.querySelector(".image-3");
-        const popupMenu = document.querySelector(".header-popup-container");
-    
-        // Ensure elements are found before adding event listeners
-        if (hamburger && closeIcon && popupMenu) {
-            // Open Popup
-            hamburger.addEventListener("click", function() {
-                popupMenu.style.display = "flex"; 
-                setTimeout(() => {
-                    popupMenu.classList.add("active");  // Add active class for animation
-                }, 10);
-            });
-    
-            // Close Popup
-            closeIcon.addEventListener("click", function() {
-                popupMenu.classList.remove("active");  // Remove active class to trigger animation
-                setTimeout(() => {
-                    popupMenu.style.display = "none";  // Hide the popup after transition
-                }, 300);  // Delay to allow the animation to finish
-            });
-        }
-    });
-    </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select elements
+    const hamburger = document.querySelector(".hamburger-icon");
+    const closeIcon = document.querySelector(".image-3");
+    const popupMenu = document.querySelector(".header-popup-container");
+  
+    // Ensure elements are found before adding event listeners
+    if (hamburger && closeIcon && popupMenu) {
+      // Open Popup
+      hamburger.addEventListener("click", function() {
+        popupMenu.style.display = "flex"; 
+        setTimeout(() => {
+          popupMenu.classList.add("active");  // Add active class for animation
+        }, 10);
+      });
+  
+      // Close Popup
+      closeIcon.addEventListener("click", function() {
+        popupMenu.classList.remove("active");  // Remove active class to trigger animation
+        setTimeout(() => {
+          popupMenu.style.display = "none";  // Hide the popup after transition
+        }, 300);  // Delay to allow the animation to finish
+      });
+    }
+  
+    // Fetch wishlist count
+    fetch('/wishlist_count_endpoint')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('wishlist-count').textContent = data.count;
+      });
+  
+    // Fetch cart count
+    fetch('/cart_count_endpoint')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('cart-count').textContent = data.count;
+      });
+  });
+  
+  </script>
+ 

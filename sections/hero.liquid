@@ -69,7 +69,7 @@
             { "value": "contain", "label": "Contain" },
             { "value": "auto", "label": "Auto" }
           ],
-          "default": "cover"
+          "default": "contain"
         },
         {
           "type": "select",
@@ -87,7 +87,7 @@
           "type": "text",
           "id": "background_position",
           "label": "Background Position",
-          "default": "center",
+          "default": "right",
           "info": "You can use keywords (e.g., 'top', 'left center') or percentages/pixels (e.g., '50% 20%', '100px 200px')"
         },
         {
@@ -98,7 +98,7 @@
           "max": 100,
           "step": 5,
           "unit": "px",
-          "default": 20
+          "default": 30
         },
         {
           "type": "range",
@@ -114,11 +114,11 @@
           "type": "range",
           "id": "height",
           "label": "Height",
-          "min": 300,
-          "max": 1000,
-          "step": 50,
+          "min": 250,
+          "max": 400,
+          "step": 2,
           "unit": "px",
-          "default": 500
+          "default": 350
         },
         {
           "type": "image_picker",
@@ -160,12 +160,12 @@
           "type": "slide",
           "settings": {
             "background_image": "",
-            "background_size": "cover",
+            "background_size": "contain",
             "background_repeat": "no-repeat",
-            "background_position": "center",
-            "padding": 20,
+            "background_position": "right",
+            "padding": 30,
             "margin": 0,
-            "height": 500,
+            "height": 350,
             "slide_title": "iPhone 14 Series",
             "heading": "Up to 10% off Voucher",
             "button_text": "Shop Now"
@@ -175,12 +175,12 @@
           "type": "slide",
           "settings": {
             "background_image": "",
-            "background_size": "cover",
+            "background_size": "contain",
             "background_repeat": "no-repeat",
-            "background_position": "center",
-            "padding": 20,
+            "background_position": "right",
+            "padding": 30,
             "margin": 0,
-            "height": 500,
+            "height": 350,
             "slide_title": "iPhone 14 Series",
             "heading": "Up to 10% off Voucher",
             "button_text": "Shop Now"
@@ -311,4 +311,4 @@
     // Initialize first slide and dots
     showSlide(currentIndex);
   });
-</script>
+</script> 

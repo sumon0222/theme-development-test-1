@@ -58,73 +58,13 @@
           "type": "image_picker",
           "id": "background_image",
           "label": "Background Image",
-          "info": "Recommended size: 1920x800px"
         },
-        {
-          "type": "select",
-          "id": "background_size",
-          "label": "Background Size",
-          "options": [
-            { "value": "cover", "label": "Cover" },
-            { "value": "contain", "label": "Contain" },
-            { "value": "auto", "label": "Auto" }
-          ],
-          "default": "contain"
-        },
-        {
-          "type": "select",
-          "id": "background_repeat",
-          "label": "Background Repeat",
-          "options": [
-            { "value": "no-repeat", "label": "No Repeat" },
-            { "value": "repeat", "label": "Repeat" },
-            { "value": "repeat-x", "label": "Repeat Horizontally" },
-            { "value": "repeat-y", "label": "Repeat Vertically" }
-          ],
-          "default": "no-repeat"
-        },
-        {
-          "type": "text",
-          "id": "background_position",
-          "label": "Background Position",
-          "default": "right",
-          "info": "You can use keywords (e.g., 'top', 'left center') or percentages/pixels (e.g., '50% 20%', '100px 200px')"
-        },
-        {
-          "type": "range",
-          "id": "padding",
-          "label": "Padding",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "px",
-          "default": 30
-        },
-        {
-          "type": "range",
-          "id": "margin",
-          "label": "Margin",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "px",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "height",
-          "label": "Height",
-          "min": 250,
-          "max": 400,
-          "step": 2,
-          "unit": "px",
-          "default": 350
-        },
+       
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Slide Image",
-          "info": "Recommended size: 800x600px"
+          "label": "title Image",
+         
         },
         {
           "type": "text",
@@ -160,12 +100,6 @@
           "type": "slide",
           "settings": {
             "background_image": "",
-            "background_size": "contain",
-            "background_repeat": "no-repeat",
-            "background_position": "right",
-            "padding": 30,
-            "margin": 0,
-            "height": 350,
             "slide_title": "iPhone 14 Series",
             "heading": "Up to 10% off Voucher",
             "button_text": "Shop Now"
@@ -175,12 +109,6 @@
           "type": "slide",
           "settings": {
             "background_image": "",
-            "background_size": "contain",
-            "background_repeat": "no-repeat",
-            "background_position": "right",
-            "padding": 30,
-            "margin": 0,
-            "height": 350,
             "slide_title": "iPhone 14 Series",
             "heading": "Up to 10% off Voucher",
             "button_text": "Shop Now"
@@ -216,12 +144,6 @@
               {% else %}
                 background-image: url('{{ 'hero-slider-background.png' | asset_url }}');
               {% endif %}
-              background-size: {{ block.settings.background_size }};
-              background-repeat: {{ block.settings.background_repeat }};
-              background-position: {{ block.settings.background_position }};
-              padding: {{ block.settings.padding }}px;
-              margin: {{ block.settings.margin }}px;
-              height: {{ block.settings.height }}px;
             ">
               <div class="slider-text-img">
                 {% if block.settings.image != blank %}

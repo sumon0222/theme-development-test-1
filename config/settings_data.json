@@ -8,5 +8,148 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "sale_banner_text": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+          "shop_now_text": "Shop Now",
+          "shop_now_link": "/",
+          "logo_text": "Exclusive",
+          "search_placeholder": "Search Here!",
+          "categories_title": "Categories",
+          "menu": "",
+          "categories_menu": "",
+          "wishlist_url": "/",
+          "cart_url": "/"
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "blocks": {
+          "slide_X4EtPK": {
+            "type": "slide",
+            "settings": {
+              "slide_title": "iPhone 14 Series",
+              "heading": "Up to 10% off Voucher",
+              "button_text": "Shop Now",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "slide_X4EtPK"
+        ],
+        "settings": {
+          "sidebar_nav_1": "Electronics",
+          "sidebar_nav_2": "Home & Lifestyle",
+          "sidebar_nav_3": "Medicine",
+          "sidebar_nav_4": "Sports & Outdoor",
+          "sidebar_nav_5": "Baby’s & Toys",
+          "sidebar_nav_6": "Groceries & Pets",
+          "sidebar_nav_7": "Health & Beauty"
+        }
+      },
+      "flash-sale-section": {
+        "type": "flash-sale-section",
+        "settings": {
+          "heading": "Flash Sales",
+          "collection": "",
+          "countdown_date": "2024-12-31"
+        }
+      },
+      "category": {
+        "type": "category",
+        "settings": {
+          "subheading": "Categories",
+          "heading": "Browse By Category",
+          "items_per_row_desktop": 6,
+          "items_per_row_tablet": 3,
+          "items_per_row_mobile": 2
+        }
+      },
+      "best-selling": {
+        "type": "best-selling",
+        "settings": {
+          "section_heading": "Best Selling Products",
+          "sub_heading": "This Month",
+          "collection": "",
+          "button_text": "View All",
+          "button_link": "",
+          "product_limit": 4
+        }
+      },
+      "category-music": {
+        "type": "category-music",
+        "settings": {
+          "section_heading": "Enhance Your Music Experience",
+          "sub_heading": "Categories",
+          "countdown_end_date": "2025-12-31",
+          "button_text": "Buy Now!",
+          "button_link": ""
+        }
+      },
+      "all-product": {
+        "type": "all-product",
+        "settings": {
+          "products_limit": 8,
+          "collection": ""
+        }
+      },
+      "service-quality": {
+        "type": "service-quality",
+        "settings": {
+          "service1_title": "FREE AND FAST DELIVERY",
+          "service1_description": "Free delivery for all orders over $140",
+          "service2_title": "24/7 CUSTOMER SERVICE",
+          "service2_description": "Friendly 24/7 customer support",
+          "service3_title": "MONEY BACK GUARANTEE",
+          "service3_description": "We return money within 30 days"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_title": "Exclusive",
+          "subscribe_text": "Get 10% off your first order",
+          "footer_description": "Subscribe",
+          "email_placeholder": "Enter your email",
+          "thank_you_text": "Thank you! Your submission has been received!",
+          "error_text": "Oops! Something went wrong while submitting the form.",
+          "support_title": "Support",
+          "support_address": "111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.",
+          "support_email": "exclusive@gmail.com",
+          "support_phone": "+88015-88888-9999",
+          "account_title": "Account",
+          "account_link": "",
+          "account_text": "My Account",
+          "login_link": "",
+          "login_text": "Login / Register",
+          "cart_link": "",
+          "cart_text": "Cart",
+          "wishlist_link": "",
+          "wishlist_text": "Wishlist",
+          "shop_link": "",
+          "shop_text": "Shop",
+          "quick_link_title": "Quick Links",
+          "privacy_policy_link": "",
+          "privacy_policy_text": "Privacy Policy",
+          "terms_of_use_link": "",
+          "terms_of_use_text": "Terms Of Use",
+          "faq_link": "",
+          "faq_text": "FAQ",
+          "contact_link": "",
+          "contact_text": "Contact",
+          "virtual_media_title": "Follow Us",
+          "facebook_url": "",
+          "twitter_url": "",
+          "instagram_url": "",
+          "linkedin_url": "",
+          "copyright_text": "Copyright 2025. All rights reserved."
+        }
+      }
+    },
+    "content_for_index": []
+  }
 }

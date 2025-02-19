@@ -120,10 +120,13 @@
         "settings": {
           "service1_title": "FREE AND FAST DELIVERY",
           "service1_description": "Free delivery for all orders over $140",
+          "service1_image": "shopify://shop_images/Services_1Services.png",
           "service2_title": "24/7 CUSTOMER SERVICE",
           "service2_description": "Friendly 24/7 customer support",
+          "service2_image": "shopify://shop_images/Services_1Services.png",
           "service3_title": "MONEY BACK GUARANTEE",
-          "service3_description": "We return money within 30 days"
+          "service3_description": "We return money within 30 days",
+          "service3_image": "shopify://shop_images/Services_1Services.png"
         }
       },
       "footer": {

@@ -117,24 +117,24 @@
     }, 1000);
   });
 
-  // Product Slider
-  document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.querySelector('.flash-sales-products-lists');
-    const leftArrow = document.querySelector('.flash-left-arrow');
-    const rightArrow = document.querySelector('.flash-right-arrow');
+  // Product Slider (Commented Out)
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   const slider = document.querySelector('.flash-sales-products-lists');
+  //   const leftArrow = document.querySelector('.flash-left-arrow');
+  //   const rightArrow = document.querySelector('.flash-right-arrow');
 
-    if (slider && leftArrow && rightArrow) {
-      const productWidth = document.querySelector('.product1').offsetWidth + 30; // Include gap width
+  //   if (slider && leftArrow && rightArrow) {
+  //     const productWidth = document.querySelector('.product1').offsetWidth + 30; // Include gap width
 
-      // Scroll Left
-      leftArrow.addEventListener('click', () => {
-        slider.scrollBy({ left: -productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
-      });
+  //     // Scroll Left
+  //     leftArrow.addEventListener('click', () => {
+  //       slider.scrollBy({ left: -productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
+  //     });
 
-      // Scroll Right
-      rightArrow.addEventListener('click', () => {
-        slider.scrollBy({ left: productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
-      });
-    }
-  });
+  //     // Scroll Right
+  //     rightArrow.addEventListener('click', () => {
+  //       slider.scrollBy({ left: productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
+  //     });
+  //   }
+  // });
 </script>

@@ -57,14 +57,12 @@
         {
           "type": "image_picker",
           "id": "background_image",
-          "label": "Background Image",
+          "label": "Background Image"
         },
-       
         {
           "type": "image_picker",
           "id": "image",
-          "label": "title Image",
-         
+          "label": "Title Image"
         },
         {
           "type": "text",
@@ -135,17 +133,15 @@
 
     <!-- Hero Slider -->
     <div class="hero-content-slider">
-      <div data-delay="4000" data-animation="slide" class="slider hero-slider w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="5" data-duration="500" data-infinite="true">
+      <div class="slider hero-slider w-slider">
         <div class="mask w-slider-mask">
           {% for block in section.blocks %}
             <div class="slide slide-{{ forloop.index }} w-slide" style="
-              
-                background-image: url('{{ block.settings.background_image | image_url: 'master' }}');
-             
+                background-image: url('{{ block.settings.background_image | image_url }}');
             ">
               <div class="slider-text-img">
                 {% if block.settings.image != blank %}
-                  <img loading="lazy" src="{{ block.settings.image | image_url: 'image_url' }}" alt="{{ block.settings.image.alt }}" class="image-4">
+                  <img loading="lazy" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt | escape }}" class="image-4">
                 {% else %}
                   <img loading="lazy" src="{{ 'hero-apple-logo.png' | asset_url }}" alt="Default Image" class="image-4">
                 {% endif %}
@@ -167,7 +163,7 @@
         </div>
         <div class="slide-nav w-slider-nav w-round">
           {% for block in section.blocks %}
-            <div class="w-slider-dot {% if forloop.first %}w-active{% endif %}" data-wf-ignore="" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" role="button" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" style="margin-left: 5px; margin-right: 5px;"></div>
+            <div class="w-slider-dot {% if forloop.first %}w-active{% endif %}" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" role="button" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" style="margin: 5px;"></div>
           {% endfor %}
         </div>
       </div>
@@ -177,15 +173,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.querySelector('.hero-slider');
     const slides = document.querySelectorAll('.w-slide');
     const prevArrow = document.querySelector('.w-slider-arrow-left');
     const nextArrow = document.querySelector('.w-slider-arrow-right');
-    const dots = document.querySelectorAll('.w-slider-nav .w-slider-dot');
+    const dots = document.querySelectorAll('.w-slider-dot');
 
     let currentIndex = 0;
 
-    // Function to show a specific slide
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.style.display = i === index ? 'block' : 'none';
@@ -193,7 +187,6 @@
       updateDots(index);
     }
 
-    // Function to update the active dot
     function updateDots(index) {
       dots.forEach((dot, i) => {
         dot.classList.toggle('w-active', i === index);
@@ -202,19 +195,16 @@
       });
     }
 
-    // Event listener for previous arrow
     prevArrow.addEventListener('click', () => {
       currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
       showSlide(currentIndex);
     });
 
-    // Event listener for next arrow
     nextArrow.addEventListener('click', () => {
       currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
       showSlide(currentIndex);
     });
 
-    // Event listeners for dots
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
         currentIndex = i;
@@ -222,13 +212,11 @@
       });
     });
 
-    // Auto-play (optional)
     setInterval(() => {
       currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
       showSlide(currentIndex);
     }, 4000);
 
-    // Initialize first slide and dots
     showSlide(currentIndex);
   });
-</script> 
+</script>

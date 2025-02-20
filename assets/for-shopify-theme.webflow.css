@@ -351,9 +351,7 @@ display:block !important;
 
 .slider {
   background-color: #000;
-  background-image: url('hero-slider-background.png');
-  background-position: 100%;
-  background-repeat: no-repeat;
+
   background-size: auto;
   width: auto;
   height: auto;

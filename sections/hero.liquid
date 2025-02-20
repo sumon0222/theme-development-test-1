@@ -145,7 +145,7 @@
             ">
               <div class="slider-text-img">
                 {% if block.settings.image != blank %}
-                  <img loading="lazy" src="{{ block.settings.image | image_url: 'file_url' }}" alt="{{ block.settings.image.alt }}" class="image-4">
+                  <img loading="lazy" src="{{ block.settings.image | image_url: 'image_url' }}" alt="{{ block.settings.image.alt }}" class="image-4">
                 {% else %}
                   <img loading="lazy" src="{{ 'hero-apple-logo.png' | asset_url }}" alt="Default Image" class="image-4">
                 {% endif %}

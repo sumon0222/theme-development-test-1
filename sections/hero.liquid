@@ -139,11 +139,9 @@
         <div class="mask w-slider-mask">
           {% for block in section.blocks %}
             <div class="slide slide-{{ forloop.index }} w-slide" style="
-              {% if block.settings.background_image != blank %}
+              
                 background-image: url('{{ block.settings.background_image | image_url: 'master' }}');
-              {% else %}
-                background-image: url('{{ 'hero-slider-background.png' | asset_url }}');
-              {% endif %}
+             
             ">
               <div class="slider-text-img">
                 {% if block.settings.image != blank %}

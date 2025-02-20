@@ -28,6 +28,16 @@
       "hero": {
         "type": "hero",
         "blocks": {
+          "slide_fGmnJq": {
+            "type": "slide",
+            "settings": {
+              "background_image": "shopify://shop_images/jbl2.png",
+              "slide_title": "iPhone 14 Series",
+              "heading": "Up to 10% off Voucher",
+              "button_text": "Shop Now",
+              "button_link": ""
+            }
+          },
           "slide_X4EtPK": {
             "type": "slide",
             "settings": {
@@ -40,6 +50,7 @@
           }
         },
         "block_order": [
+          "slide_fGmnJq",
           "slide_X4EtPK"
         ],
         "settings": {

@@ -430,7 +430,7 @@ display:block !important;
 }
 
 .slide {
-  
+       background-image: url('hero-slider-background.png');
   background-position: 100%;
   background-repeat: no-repeat;
   background-size: auto;

@@ -31,6 +31,7 @@
           "slide_X4EtPK": {
             "type": "slide",
             "settings": {
+              "background_image": "shopify://shop_images/hero-slider-background.png",
               "slide_title": "iPhone 14 Series",
               "heading": "Up to 10% off Voucher",
               "button_text": "Shop Now",

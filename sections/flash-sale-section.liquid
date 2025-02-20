@@ -28,6 +28,7 @@
   ]
 }
 {% endschema %}
+
 <section class="flash-sale-section">
   <div class="flash-sale-wrapper">
     <!-- Flash Sale Countdown -->
@@ -53,9 +54,16 @@
     <!-- Flash Sale Products -->
     <div class="flash-sales-products-lists">
       {% for product in collections[section.settings.collection].products %}
-        {% assign discount_percentage = product.metafields.custom.discount_percentage | default: 35 %}
+        {% assign discount_percentage = product.metafields.custom.discount_percentage %}
+        {% unless discount_percentage %}
+          {% assign discount_percentage = 35 %}
+        {% endunless %}
+
+        {% assign rating_count = product.metafields.reviews.rating_count | default: 0 %}
+
         <div class="product1">
-          <div class="product1-top-container" style="background-image: url('{% if product.featured_image %}{{ product.featured_image | image_url: 'medium' }}{% else %}{{ 'hero-slider-background.png' | asset_url }}{% endif %}');">
+          <div class="product1-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
+
             <div class="discount-and-wishlist-container">
               <div class="discount">
                 <div class="text-block-6">-{{ discount_percentage }}%</div>
@@ -72,12 +80,14 @@
           <div class="product1-down">
             <div class="text-block-7">{{ product.title }}</div>
             <div class="pricings">
-              <div class="old-price">{{ product.compare_at_price | money }}</div>
+              {% if product.compare_at_price > product.price %}
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+              {% endif %}
               <div class="new-price">{{ product.price | money }}</div>
             </div>
             <div class="rating">
               <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating">
-              <div class="text-block-8">({{ product.metafields.reviews.rating_count }})</div>
+              <div class="text-block-8">({{ rating_count }})</div>
             </div>
           </div>
         </div>
@@ -116,25 +126,4 @@
       }
     }, 1000);
   });
-
-  // Product Slider (Commented Out)
-  // document.addEventListener('DOMContentLoaded', function () {
-  //   const slider = document.querySelector('.flash-sales-products-lists');
-  //   const leftArrow = document.querySelector('.flash-left-arrow');
-  //   const rightArrow = document.querySelector('.flash-right-arrow');
-
-  //   if (slider && leftArrow && rightArrow) {
-  //     const productWidth = document.querySelector('.product1').offsetWidth + 30; // Include gap width
-
-  //     // Scroll Left
-  //     leftArrow.addEventListener('click', () => {
-  //       slider.scrollBy({ left: -productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
-  //     });
-
-  //     // Scroll Right
-  //     rightArrow.addEventListener('click', () => {
-  //       slider.scrollBy({ left: productWidth * 4, behavior: 'smooth' }); // Scroll 4 products at a time
-  //     });
-  //   }
-  // });
 </script>

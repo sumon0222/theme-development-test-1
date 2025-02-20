@@ -353,7 +353,7 @@ display:block !important;
   background-color: #000;
   background-size: auto;
   width: auto;
-  height: auto;
+
 }
 
 
@@ -433,7 +433,7 @@ display:block !important;
   background-image: url('hero-slider-background.png');
   background-position: 100%;
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   padding-top: 58px;
   padding-bottom: 47px;
   padding-left: 64px;

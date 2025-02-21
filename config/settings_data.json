@@ -163,8 +163,12 @@
       "all-product": {
         "type": "all-product",
         "settings": {
-          "products_limit": 8,
-          "collection": "all-products"
+          "section_heading": "Explore Our Products",
+          "sub_heading": "Our Products",
+          "collection": "all-products",
+          "button_text": "View All",
+          "button_link": "",
+          "product_limit": 4
         }
       },
       "service-quality": {

@@ -13,37 +13,6 @@
         "id": "heading",
         "label": "Heading",
         "default": "Browse By Category"
-      },
-      {
-        "type": "header",
-        "content": "Grid Settings"
-      },
-      {
-        "type": "range",
-        "id": "items_per_row_desktop",
-        "label": "Items per row (Desktop)",
-        "min": 1,
-        "max": 6,
-        "step": 1,
-        "default": 6
-      },
-      {
-        "type": "range",
-        "id": "items_per_row_tablet",
-        "label": "Items per row (Tablet)",
-        "min": 1,
-        "max": 4,
-        "step": 1,
-        "default": 3
-      },
-      {
-        "type": "range",
-        "id": "items_per_row_mobile",
-        "label": "Items per row (Mobile)",
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "default": 2
       }
     ],
     "blocks": [
@@ -63,10 +32,9 @@
             "label": "Category Link"
           },
           {
-            "type": "textarea",
-            "id": "svg_code",
-            "label": "SVG Code",
-            "default": "<svg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(#clip0_1890_868)'><path d='M38.9375 6.125H17.0625C15.5523 6.125 14.3281 7.34922 14.3281 8.85938V47.1406C14.3281 48.6508 15.5523 49.875 17.0625 49.875H38.9375C40.4477 49.875 41.6719 48.6508 41.6719 47.1406V8.85938C41.6719 7.34922 40.4477 6.125 38.9375 6.125Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M25.6667 7H31.1354' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'></path><path d='M28 44.0052V44.0305' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'></path><line x1='15.1667' y1='39.8334' x2='40.8333' y2='39.8334' stroke='currentColor' stroke-width='2'></line></g><defs><clipPath id='clip0_1890_868'><rect width='56' height='56' fill='white'></rect></clipPath></defs></svg>"
+            "type": "image_picker",
+            "id": "svg_image",
+            "label": "Upload SVG Image"
           },
           {
             "type": "color",
@@ -92,17 +60,7 @@
             "settings": {
               "title": "Phones",
               "link": "#",
-              "svg_code": "<svg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(#clip0_1890_868)'><path d='M38.9375 6.125H17.0625C15.5523 6.125 14.3281 7.34922 14.3281 8.85938V47.1406C14.3281 48.6508 15.5523 49.875 17.0625 49.875H38.9375C40.4477 49.875 41.6719 48.6508 41.6719 47.1406V8.85938C41.6719 7.34922 40.4477 6.125 38.9375 6.125Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M25.6667 7H31.1354' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'></path><path d='M28 44.0052V44.0305' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'></path><line x1='15.1667' y1='39.8334' x2='40.8333' y2='39.8334' stroke='currentColor' stroke-width='2'></line></g><defs><clipPath id='clip0_1890_868'><rect width='56' height='56' fill='white'></rect></clipPath></defs></svg>",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
-            }
-          },
-          {
-            "type": "category",
-            "settings": {
-              "title": "Computers",
-              "link": "#",
-              "svg_code": "<svg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(#clip0_1890_613)'><path d='M46.6667 9.33337H9.33333C8.04467 9.33337 7 10.378 7 11.6667V35C7 36.2887 8.04467 37.3334 9.33333 37.3334H46.6667C47.9553 37.3334 49 36.2887 49 35V11.6667C49 10.378 47.9553 9.33337 46.6667 9.33337Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M16.3333 46.6666H39.6667' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M21 37.3334V46.6667' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M35 37.3334V46.6667' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path><path d='M8 32H48' stroke='currentColor' stroke-width='2' stroke-linecap='round'></path></g><defs><clipPath id='clip0_1890_613'><rect width='56' height='56' fill='white'></rect></clipPath></defs></svg>",
+              "svg_image": "",
               "svg_normal_color": "#000000",
               "svg_hover_color": "#FFFFFF"
             }
@@ -110,8 +68,9 @@
         ]
       }
     ]
-  }  
+}
 {% endschema %}
+
 <section class="categories-section">
   <div class="categories-wrapper">
     <div class="best-selling-up-block">
@@ -124,9 +83,13 @@
       {% for block in section.blocks %}
         <a href="{{ block.settings.link }}" class="category-items"
           style="--svg-normal-color: {{ block.settings.svg_normal_color }}; --svg-hover-color: {{ block.settings.svg_hover_color }};">
-          <div class="svg-image-category w-embed">
-            {{ block.settings.svg_code }}
-          </div>
+          
+          {% if block.settings.svg_image != blank %}
+            <div class="svg-image-category">
+              <img src="{{ block.settings.svg_image | image_url }}" class="svg-icon" alt="{{ block.settings.title }}">
+            </div>
+          {% endif %}
+          
           <div class="text-block-9">{{ block.settings.title }}</div>
         </a>
       {% endfor %}
@@ -135,19 +98,14 @@
 </section>
 
 <style>
-  /* Default SVG Color */
-  .svg-image-category svg path,
-  .svg-image-category svg line,
-  .svg-image-category svg rect {
-    stroke: var(--svg-normal-color) !important;
-    fill: none!important;
+  /* Default SVG Color (via filter) */
+  .svg-image-category img {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    transition: filter 0.3s ease;
   }
 
-  /* Change SVG color on hover */
-  .category-items:hover .svg-image-category svg path,
-  .category-items:hover .svg-image-category svg line,
-  .category-items:hover .svg-image-category svg rect {
-    stroke: var(--svg-hover-color)!important;
-    fill: none!important;
+  /* Change SVG color on Hover */
+  .category-items:hover .svg-image-category img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(0deg) brightness(100%) contrast(100%);
   }
 </style>

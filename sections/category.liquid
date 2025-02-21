@@ -35,18 +35,6 @@
             "type": "image_picker",
             "id": "svg_image",
             "label": "Upload SVG Image"
-          },
-          {
-            "type": "color",
-            "id": "svg_normal_color",
-            "label": "SVG Normal Color",
-            "default": "#000000"
-          },
-          {
-            "type": "color",
-            "id": "svg_hover_color",
-            "label": "SVG Hover Color",
-            "default": "#FFFFFF"
           }
         ]
       }
@@ -60,9 +48,8 @@
             "settings": {
               "title": "Phones",
               "link": "#",
-              "svg_image": "",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": ""
+              
             }
           }
         ]
@@ -82,7 +69,7 @@
     <div class="category-lists">
       {% for block in section.blocks %}
         <a href="{{ block.settings.link }}" class="category-items"
-          style="--svg-normal-color: {{ block.settings.svg_normal_color }}; --svg-hover-color: {{ block.settings.svg_hover_color }};">
+          style="--svg-normal-color:#000000; --svg-hover-color: #FFFFFF;">
           
           {% if block.settings.svg_image != blank %}
             <div class="svg-image-category">

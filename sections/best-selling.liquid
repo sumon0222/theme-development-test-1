@@ -82,9 +82,9 @@
             <div class="text-block-7">{{ product.title }}</div>
             <div class="pricings">
               {% if product.compare_at_price > product.price %}
-                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="new-price">{{ product.compare_at_price | money }}</div>
               {% endif %}
-              <div class="new-price">{{ product.price | money }}</div>
+              <div class="old-price">{{ product.price | money }}</div>
             </div>
             <div class="rating">
               <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating" class="image-11">

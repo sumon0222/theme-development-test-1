@@ -69,12 +69,12 @@
                 <div class="text-block-6">-{{ discount_percentage }}%</div>
               </div>
               <div class="wish-icons">
-                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="wish-img" data-product-id="{{ product.id }}" >
+                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="wish-img wishlist-icon" data-product-id="{{ product.id }}">
                 <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
               </div>
             </div>
             <div class="add-to-cart-btn-container">
-              <a href="{{ product.url }}" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">Add to Cart</a>
+              <button type="button" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">Add to Cart</button>
             </div>
           </div>
           <div class="product1-down">
@@ -97,8 +97,6 @@
     <!-- View All Button -->
     <div class="all-products-btn">
       <a href="{{ collections[section.settings.collection].url }}" class="flas-sales-view-all-btn w-button">View All Products</a>
-      
-
     </div>
   </div>
 </section>
@@ -127,5 +125,69 @@
         document.querySelector('.countdown-timer').innerHTML = "<h2>Sale Ended!</h2>";
       }
     }, 1000);
+
+    // Add to Cart and Wishlist Logic
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    addToCartButtons.forEach(button => {
+      button.addEventListener("click", function() {
+        const productId = this.getAttribute("data-product-id");
+
+        // Save to cart in localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (!cart.includes(productId)) {
+          cart.push(productId);
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Change button text and style
+        this.textContent = "Added to Cart";
+        this.disabled = true; // Disable the button
+
+        // Optionally, you can handle a success message or any other behavior.
+      });
+    });
+
+    // Wishlist Icon Logic
+    const wishlistIcons = document.querySelectorAll(".wishlist-icon");
+    wishlistIcons.forEach(icon => {
+      icon.addEventListener("click", function() {
+        const productId = this.getAttribute("data-product-id");
+
+        // Get current wishlist from localStorage
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Toggle Wishlist
+        if (wishlist.includes(productId)) {
+          wishlist = wishlist.filter(id => id !== productId); // Remove product
+          this.style.opacity = 0.5; // Adjust appearance to show it was removed
+        } else {
+          wishlist.push(productId); // Add product to wishlist
+          this.style.opacity = 1; // Adjust appearance to show it was added
+        }
+
+        // Update the wishlist in localStorage
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      });
+    });
+
   });
 </script>
+
+<style>
+  /* Add styling for the "Added to Cart" button */
+  .add-to-cart-btn:disabled {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+  }
+
+  /* Add styles for the wishlist icon active state */
+  .wishlist-icon {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  .wishlist-icon.active {
+    opacity: 1;
+  }
+</style>

@@ -224,6 +224,10 @@
           "instagram_url": "",
           "linkedin_url": "",
           "facebook_icon": "shopify://shop_images/Icon-Facebook_1Icon-Facebook.png",
+          "twitter_icon": "shopify://shop_images/Icon-Twitter.png",
+          "instagram_icon": "shopify://shop_images/icon-instagram.png",
+          "linkedin_icon": "shopify://shop_images/Icon-Linkedin.png",
+          "copyright_icon": "shopify://shop_images/icon-copyright.png",
           "copyright_text": "Copyright 2025. All rights reserved."
         }
       }

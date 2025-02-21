@@ -67,7 +67,7 @@
           <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
             <div class="bs-wishlists-icon">
               <div class="bs-wish-icons">
-                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img" data-product-id="{{ product.id }}">
+                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img" >
                 <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view wishlist-icon" data-product-id="{{ product.id }}">
               </div>
             </div>
@@ -101,10 +101,7 @@
   </div>
 </section>
 
-<!-- Wishlist Count Display -->
-<div id="wishlist-count-container">
-  <span id="wishlist-count">0</span> items in wishlist
-</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Function to get wishlist from localStorage

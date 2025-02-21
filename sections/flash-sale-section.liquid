@@ -73,13 +73,8 @@
                 <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
               </div>
             </div>
-             <div class="add-to-cart-btn-container">
-              <form method="post" action="/cart/add">
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="button" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
-                  Add to Cart
-                </button>
-              </form>
+            <div class="add-to-cart-btn-container">
+              <a href="{{ product.url }}" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">Add to Cart</a>
             </div>
           </div>
           <div class="product1-down">

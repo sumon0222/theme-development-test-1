@@ -1,94 +1,217 @@
 {% schema %}
 {
-  "name": "Our Products",
+  "name": "Best Selling Products",
   "settings": [
     {
-      "type": "range",
-      "id": "products_limit",
-      "label": "Number of products to display",
-      "min": 4,
-      "max": 12,
-      "step": 4,
-      "default": 8
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Best Selling Products"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "This Month"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Select Collection"
+      "label": "Select Collection",
+      "info": "Choose a collection to display products from."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Number of Products",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Selling Products"
     }
   ]
 }
 {% endschema %}
 
-<section class="our-products-section">
-  <div class="our-products-wrapper">
-    <div class="our-products-up-block">
-      <div class="todays-sale category-text">Our Products</div>
-      <div class="browse-by-category">
-        <h2 class="best-selling-heading">Explore Our Products</h2>
-        <div class="our-products-arrows">
-          <button class="our-products-left-arrow" aria-label="Scroll left">
-            <img src="{{ 'left-arrow.png' | asset_url }}" alt="Left Arrow">
-          </button>
-          <button class="our-products-right-arrow" aria-label="Scroll right">
-            <img src="{{ 'right-arrow.png' | asset_url }}" alt="Right Arrow">
-          </button>
-        </div>
+<section class="best-selling-products-section">
+  <div class="best-selling-products-wrapper">
+    <div class="best-selling-up-block">
+      <div class="todays-sale">{{ section.settings.sub_heading }}</div>
+      <div class="browse-by-category best-selling-view-btn">
+        <h2 class="best-selling-heading">{{ section.settings.section_heading }}</h2>
+        <a href="{{ section.settings.button_link | default: '#' }}" class="best-selling-view-all-btn w-button">
+          {{ section.settings.button_text }}
+        </a>
       </div>
     </div>
-    
-    <div class="our-products-container">
-      <div class="our-products-lists">
-        {% assign products = collections[section.settings.collection].products %}
-        {% for product in products limit: section.settings.products_limit %}
-          <div class="our-product">
-            <div class="our-product-top-container" style="background-image: url('{{ product.featured_image | image_url}}');">
-              <div class="bs-wishlists-icon">
-                <div class="bs-wish-icons">
-                  <img src="{{ 'wishlist.png' | asset_url }}" alt="Wishlist" class="wish-img"  data-product-id="{{ product.id }}">
-                  <img src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
-                </div>
-              </div>
-              <div class="add-to-cart-btn-container">
-                <a href="{{ product.url }}" class="add-to-cart-btn">Add to Cart</a>
+
+    <div class="best-selling-products-lists">
+      {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
+        <div class="bs-product1">
+          <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
+            <div class="bs-wishlists-icon">
+              <div class="bs-wish-icons">
+                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img" >
+                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view wishlist-icon" data-product-id="{{ product.id }}">
               </div>
             </div>
-            <div class="our-product-down-container">
-              <div class="text-block-7">{{ product.title }}</div>
-              <div class="pricings">
-                {% if product.compare_at_price > product.price %}
-                  <div class="old-price">{{ product.compare_at_price | money }}</div>
-                {% endif %}
-                <div class="new-price">{{ product.price | money }}</div>
-              </div>
+            <div class="add-to-cart-btn-container">
+              <form method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button type="button" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
+                  Add to Cart
+                </button>
+              </form>
             </div>
           </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <div class="all-products-btn our-pd">
-      <a href="{{ collections[section.settings.collection].url }}" class="flas-sales-view-all-btn">View All Products</a>
+          <div class="bs-product-down-container">
+            <div class="text-block-7">{{ product.title }}</div>
+            <div class="pricings">
+              {% if product.compare_at_price > product.price %}
+                <div class="new-price">{{ product.compare_at_price | money }}</div>
+              {% endif %}
+              <div class="old-price">{{ product.price | money }}</div>
+            </div>
+            <div class="rating">
+              <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating" class="image-11">
+              <div class="text-block-10">({{ product.metafields.reviews.count | default: 67 }})</div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>No products available in this collection.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
 
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let productsWrapper = document.querySelector(".our-products-container");
-    let leftArrow = document.querySelector(".our-products-left-arrow");
-    let rightArrow = document.querySelector(".our-products-right-arrow");
+document.addEventListener("DOMContentLoaded", function() {
+  // Function to get wishlist from localStorage
+  function getWishlist() {
+    return JSON.parse(localStorage.getItem('wishlist')) || [];
+  }
 
-    if (productsWrapper && leftArrow && rightArrow) {
-      const scrollAmount = 300; // Adjust scroll amount as needed
+  // Function to get cart from localStorage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  }
 
-      rightArrow.addEventListener("click", function() {
-        productsWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      });
+  // Function to update cart count
+  function updateCartCount() {
+    let cart = getCart();
+    document.getElementById("cart-count").textContent = cart.length;
+  }
 
-      leftArrow.addEventListener("click", function() {
-        productsWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      });
+  // Function to update wishlist count
+  function updateWishlistCount() {
+    let wishlist = getWishlist();
+    document.getElementById("wishlist-count").textContent = wishlist.length;
+  }
+
+  // Handle Add to Cart button click (toggle between add/remove)
+  const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+  addToCartButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const productId = this.getAttribute("data-product-id");
+      let cart = getCart();
+
+      // Check if the product is already in the cart
+      if (cart.includes(productId)) {
+        // Remove product from cart
+        cart = cart.filter(id => id !== productId);
+        this.classList.remove("added");  // Remove added class
+        this.textContent = "Add to Cart";  // Reset button text
+      } else {
+        // Add product to cart
+        cart.push(productId);
+        this.classList.add("added");  // Add added class
+        this.textContent = "Added to Cart";  // Change button text
+      }
+
+      // Save updated cart to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Update cart count
+      updateCartCount();
+    });
+
+    // Initialize button state (if the product is in the cart, mark it as added)
+    const productId = button.getAttribute("data-product-id");
+    let cart = getCart();
+    if (cart.includes(productId)) {
+      button.classList.add("added");
+      button.textContent = "Added to Cart";
     }
   });
+
+  // Handle Wishlist icon click (add/remove from wishlist)
+  const wishlistIcons = document.querySelectorAll(".wishlist-icon");
+  wishlistIcons.forEach(icon => {
+    icon.addEventListener("click", function() {
+      const productId = this.getAttribute("data-product-id");
+      let wishlist = getWishlist();
+
+      // Check if the product is already in the wishlist
+      if (wishlist.includes(productId)) {
+        // Remove product from wishlist
+        wishlist = wishlist.filter(id => id !== productId);
+        this.classList.remove("active");  // Remove active class
+      } else {
+        // Add product to wishlist
+        wishlist.push(productId);
+        this.classList.add("active");  // Add active class
+      }
+
+      // Save updated wishlist to localStorage
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+      // Update wishlist count
+      updateWishlistCount();
+    });
+
+    // Initialize icon state (if the product is in the wishlist, mark it as active)
+    const productId = icon.getAttribute("data-product-id");
+    let wishlist = getWishlist();
+    if (wishlist.includes(productId)) {
+      icon.classList.add("active");
+    }
+  });
+
+  // Initial cart and wishlist count update
+  updateCartCount();
+  updateWishlistCount();
+});
 </script>
+
+<style>
+  /* Wishlist icon active state */
+.wishlist-icon.active {
+  filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
+}
+
+/* Added to cart button active state */
+.add-to-cart-btn.added {
+  background-color: #4CAF50;  /* Green color for added state */
+  color: red;
+}
+
+
+  </style>

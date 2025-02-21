@@ -286,17 +286,17 @@
         <div class="f-content-1">
           <h3 class="footer-head">{{ section.settings.virtual_media_title }}</h3>
           <div class="social-block">
-            <a href="{{ section.settings.facebook_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.facebook_icon | image_url: 'original' | default: 'assets/Icon-Facebook.png' }}" alt="Facebook" class="fb-icon"></a>
-            <a href="{{ section.settings.twitter_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.twitter_icon | image_url: 'original' | default: 'assets/Icon-Twitter.png' }}" alt="Twitter" class="twitter-icon"></a>
-            <a href="{{ section.settings.instagram_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.instagram_icon | image_url: 'original' | default: 'assets/icon-instagram.png' }}" alt="Instagram" class="instagram-icon"></a>
-            <a href="{{ section.settings.linkedin_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.linkedin_icon | image_url: 'original' | default: 'assets/Icon-Linkedin.png' }}" alt="LinkedIn" class="linkedin-icon"></a>
+            <a href="{{ section.settings.facebook_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.facebook_icon | image_url| default: 'assets/Icon-Facebook.png' }}" alt="Facebook" class="fb-icon"></a>
+            <a href="{{ section.settings.twitter_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.twitter_icon | image_url | default: 'assets/Icon-Twitter.png' }}" alt="Twitter" class="twitter-icon"></a>
+            <a href="{{ section.settings.instagram_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.instagram_icon | image_url | default: 'assets/icon-instagram.png' }}" alt="Instagram" class="instagram-icon"></a>
+            <a href="{{ section.settings.linkedin_url }}" target="_blank"><img loading="lazy"  src="{{ section.settings.linkedin_icon | image_url | default: 'assets/Icon-Linkedin.png' }}" alt="LinkedIn" class="linkedin-icon"></a>
           </div>
         </div>
       </div>
   
       <!-- Copyright Section -->
       <div class="copyright-block">
-        <img loading="lazy"  src="{{ section.settings.copyright_icon | image_url: 'original' | default: 'assets/icon-copyright.png' }}" alt="Copyright Icon" class="image-2">
+        <img loading="lazy"  src="{{ section.settings.copyright_icon | image_url | default: 'assets/icon-copyright.png' }}" alt="Copyright Icon" class="image-2">
         <div class="text-block-13">{{ section.settings.copyright_text }}</div>
       </div>
     </div>

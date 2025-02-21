@@ -67,9 +67,8 @@
           <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
             <div class="bs-wishlists-icon">
               <div class="bs-wish-icons">
-                <!-- Corrected the missing closing quote in data-product-id -->
                 <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img" data-product-id="{{ product.id }}">
-                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view">
+                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view wishlist-icon" data-product-id="{{ product.id }}">
               </div>
             </div>
             <div class="add-to-cart-btn-container">
@@ -100,10 +99,59 @@
   </div>
 </section>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Function to get wishlist from localStorage
+    function getWishlist() {
+      return JSON.parse(localStorage.getItem('wishlist')) || [];
+    }
+
+    // Function to update wishlist count
+    function updateWishlistCount() {
+      let wishlist = getWishlist();
+      document.getElementById("wishlist-count").textContent = wishlist.length;
+    }
+
+    // Handle heart icon click (add/remove from wishlist)
+    const wishlistIcons = document.querySelectorAll(".wishlist-icon");
+    wishlistIcons.forEach(icon => {
+      icon.addEventListener("click", function() {
+        const productId = this.getAttribute("data-product-id");
+        let wishlist = getWishlist();
+
+        // Check if product is already in the wishlist
+        if (wishlist.includes(productId)) {
+          // Remove product from wishlist
+          wishlist = wishlist.filter(id => id !== productId);
+          this.classList.remove("active");  // Remove active class
+        } else {
+          // Add product to wishlist
+          wishlist.push(productId);
+          this.classList.add("active");  // Add active class
+        }
+
+        // Save updated wishlist to localStorage
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+        // Update wishlist count
+        updateWishlistCount();
+      });
+
+      // Initialize the icon state (if the product is in the wishlist, mark it as active)
+      const productId = icon.getAttribute("data-product-id");
+      let wishlist = getWishlist();
+      if (wishlist.includes(productId)) {
+        icon.classList.add("active");
+      }
+    });
+
+    // Initial wishlist count update
+    updateWishlistCount();
+  });
+</script>
 
 <style>
   .wishlist-icon.active {
-  filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
-}
-
-  </style>
+    filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
+  }
+</style>

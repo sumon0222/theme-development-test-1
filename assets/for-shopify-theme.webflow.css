@@ -751,6 +751,7 @@ display:block !important;
   padding-top: 24px;
   padding-bottom: 24px;
   display: flex;
+  color:#000000;
 }
 
 .category-items:hover {

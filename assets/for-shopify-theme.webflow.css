@@ -2537,7 +2537,9 @@ display:block !important;
   .slider.hero-slider {
     width: 100%;
   }
-
+.slider{
+  height:320px;
+}
   .hero-sidebar-container {
     display: none;
   }

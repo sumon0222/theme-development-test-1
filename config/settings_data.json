@@ -81,9 +81,7 @@
             "settings": {
               "title": "Computer",
               "link": "",
-              "svg_image": "shopify://shop_images/computer-svg.svg",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": "shopify://shop_images/computer-svg.svg"
             }
           },
           "category_hRV96w": {
@@ -91,9 +89,7 @@
             "settings": {
               "title": "Phones",
               "link": "",
-              "svg_image": "shopify://shop_images/Category-CellPhone.png",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": "shopify://shop_images/Category-CellPhone.png"
             }
           },
           "category_qYi4RT": {
@@ -101,9 +97,7 @@
             "settings": {
               "title": "SmartWatch",
               "link": "",
-              "svg_image": "shopify://shop_images/SmartWatch.svg",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#ffffff"
+              "svg_image": "shopify://shop_images/SmartWatch.svg"
             }
           },
           "category_rmCVV4": {
@@ -111,9 +105,7 @@
             "settings": {
               "title": "camera",
               "link": "",
-              "svg_image": "shopify://shop_images/camera.svg",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": "shopify://shop_images/camera.svg"
             }
           },
           "category_YKpdTd": {
@@ -121,9 +113,7 @@
             "settings": {
               "title": "gaming",
               "link": "",
-              "svg_image": "shopify://shop_images/gamepad.svg",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": "shopify://shop_images/gamepad.svg"
             }
           },
           "category_d4yUYD": {
@@ -131,9 +121,7 @@
             "settings": {
               "title": "Headphone",
               "link": "",
-              "svg_image": "shopify://shop_images/Headphone.svg",
-              "svg_normal_color": "#000000",
-              "svg_hover_color": "#FFFFFF"
+              "svg_image": "shopify://shop_images/Headphone.svg"
             }
           }
         },
@@ -176,7 +164,7 @@
         "type": "all-product",
         "settings": {
           "products_limit": 8,
-          "collection": ""
+          "collection": "all-products"
         }
       },
       "service-quality": {

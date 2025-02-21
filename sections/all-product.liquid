@@ -42,7 +42,7 @@
         {% assign products = collections[section.settings.collection].products %}
         {% for product in products limit: section.settings.products_limit %}
           <div class="our-product">
-            <div class="our-product-top-container" style="background-image: url('{{ product.featured_image | image_url: 'medium' }}');">
+            <div class="our-product-top-container" style="background-image: url('{{ product.featured_image | image_url}}');">
               <div class="bs-wishlists-icon">
                 <div class="bs-wish-icons">
                   <img src="{{ 'wishlist.png' | asset_url }}" alt="Wishlist" class="wish-img">

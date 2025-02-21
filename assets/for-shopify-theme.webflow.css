@@ -430,7 +430,7 @@ display:block !important;
   text-decoration-thickness: 1px;
 }
 
-[class^=slide-]{
+.slide{
   background-image: url('hero-slider-background.png');
   background-position: 100%;
   background-repeat: no-repeat;
@@ -1584,7 +1584,7 @@ display:block !important;
     inset: 0% 0% auto 100%;
   }
 
-  [class^="slide-"]{
+  .slide{
     background-position: 100%;
     background-size: 75%;
     padding-top: 40px;
@@ -2122,7 +2122,7 @@ display:block !important;
     font-size: 14px;
   }
 
-  [class^="slide-"]  {
+  .slide {
     padding-top: 60px;
     padding-bottom: 40px;
   }
@@ -2542,7 +2542,7 @@ display:block !important;
     display: none;
   }
 
-  [class^="slide-"]{
+  .slide{
     background-size: 60%;
     width: 100%;
   }

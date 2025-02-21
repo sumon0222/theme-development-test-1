@@ -287,8 +287,8 @@
     const hamburger = document.querySelector(".hamburger-icon");
     const closeIcon = document.querySelector(".image-3");
     const popupMenu = document.querySelector(".header-popup-container");
-  
-    // Ensure elements are found before adding event listeners
+
+    // Ensure elements exist before adding event listeners
     if (hamburger && closeIcon && popupMenu) {
       // Open Popup
       hamburger.addEventListener("click", function() {
@@ -297,30 +297,36 @@
           popupMenu.classList.add("active");  // Add active class for animation
         }, 10);
       });
-  
+
       // Close Popup
       closeIcon.addEventListener("click", function() {
         popupMenu.classList.remove("active");  // Remove active class to trigger animation
         setTimeout(() => {
           popupMenu.style.display = "none";  // Hide the popup after transition
-        }, 300);  // Delay to allow the animation to finish
+        }, 300);
       });
     }
-  
-    // Fetch wishlist count
-    fetch('/wishlist_count_endpoint')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('wishlist-count').textContent = data.count;
-      });
-  
-    // Fetch cart count
-    fetch('/cart_count_endpoint')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('cart-count').textContent = data.count;
-      });
+
+    // Function to get wishlist count from localStorage
+    function updateWishlistCount() {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      document.getElementById("wishlist-count").textContent = wishlist.length;
+    }
+
+    // Function to get cart count from Shopify cart API
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("cart-count").textContent = data.item_count;
+        })
+        .catch(error => console.error("Error fetching cart count:", error));
+    }
+
+    // Update counts on page load
+    updateWishlistCount();
+    updateCartCount();
   });
-  
-  </script>
+</script>
+
  

@@ -242,7 +242,7 @@ display:block !important;
 .header-nav {
   background-color: #fff;
   border-bottom: .5px solid #0000004d;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 40px 20px 16px;
   display: flex;

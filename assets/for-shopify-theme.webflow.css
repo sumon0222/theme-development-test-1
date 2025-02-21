@@ -1311,7 +1311,7 @@ display:block !important;
 .text-field-3 {
   color: #7d8184;
   background-color: #000;
-  background-image: url('../images/icon-send_1icon-send.png');
+  background-image: url('icon-send.png');
   background-position: 96%;
   background-repeat: no-repeat;
   background-size: auto;

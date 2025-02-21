@@ -74,7 +74,9 @@
             <div class="add-to-cart-btn-container">
               <form method="post" action="/cart/add">
                 <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="submit" class="add-to-cart-btn w-button">Add to Cart</button>
+                <button type="button" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
+                  Add to Cart
+                </button>
               </form>
             </div>
           </div>
@@ -101,57 +103,61 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Function to get wishlist from localStorage
-    function getWishlist() {
-      return JSON.parse(localStorage.getItem('wishlist')) || [];
+    // Function to get cart from localStorage
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cart')) || [];
     }
 
-    // Function to update wishlist count
-    function updateWishlistCount() {
-      let wishlist = getWishlist();
-      document.getElementById("wishlist-count").textContent = wishlist.length;
+    // Function to update cart count
+    function updateCartCount() {
+      let cart = getCart();
+      document.getElementById("cart-count").textContent = cart.length;
     }
 
-    // Handle heart icon click (add/remove from wishlist)
-    const wishlistIcons = document.querySelectorAll(".wishlist-icon");
-    wishlistIcons.forEach(icon => {
-      icon.addEventListener("click", function() {
+    // Handle Add to Cart button click (toggle between add/remove)
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    addToCartButtons.forEach(button => {
+      button.addEventListener("click", function() {
         const productId = this.getAttribute("data-product-id");
-        let wishlist = getWishlist();
+        let cart = getCart();
 
-        // Check if product is already in the wishlist
-        if (wishlist.includes(productId)) {
-          // Remove product from wishlist
-          wishlist = wishlist.filter(id => id !== productId);
-          this.classList.remove("active");  // Remove active class
+        // Check if the product is already in the cart
+        if (cart.includes(productId)) {
+          // Remove product from cart
+          cart = cart.filter(id => id !== productId);
+          this.classList.remove("added");  // Remove added class
+          this.textContent = "Add to Cart";  // Reset button text
         } else {
-          // Add product to wishlist
-          wishlist.push(productId);
-          this.classList.add("active");  // Add active class
+          // Add product to cart
+          cart.push(productId);
+          this.classList.add("added");  // Add added class
+          this.textContent = "Added to Cart";  // Change button text
         }
 
-        // Save updated wishlist to localStorage
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        // Save updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Update wishlist count
-        updateWishlistCount();
+        // Update cart count
+        updateCartCount();
       });
 
-      // Initialize the icon state (if the product is in the wishlist, mark it as active)
-      const productId = icon.getAttribute("data-product-id");
-      let wishlist = getWishlist();
-      if (wishlist.includes(productId)) {
-        icon.classList.add("active");
+      // Initialize button state (if the product is in the cart, mark it as added)
+      const productId = button.getAttribute("data-product-id");
+      let cart = getCart();
+      if (cart.includes(productId)) {
+        button.classList.add("added");
+        button.textContent = "Added to Cart";
       }
     });
 
-    // Initial wishlist count update
-    updateWishlistCount();
+    // Initial cart count update
+    updateCartCount();
   });
 </script>
 
 <style>
-  .wishlist-icon.active {
-    filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
+  .add-to-cart-btn.added {
+    background-color: #4CAF50;  /* Green color for added state */
+    color: white;
   }
 </style>

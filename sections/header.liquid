@@ -326,7 +326,32 @@
     // Update counts on page load
     updateWishlistCount();
     updateCartCount();
+
+    // Event listener to update wishlist when heart icon is clicked
+    document.querySelectorAll('.wish-icons').forEach(icon => {
+      icon.addEventListener("click", function() {
+        // Get the product ID from the parent or dataset
+        const productId = this.closest('.bs-product1').getAttribute('data-product-id');
+
+        // Get the existing wishlist from localStorage or initialize an empty array
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        // Add or remove product from wishlist
+        if (wishlist.includes(productId)) {
+          wishlist = wishlist.filter(id => id !== productId);  // Remove from wishlist
+        } else {
+          wishlist.push(productId);  // Add to wishlist
+        }
+
+        // Save updated wishlist back to localStorage
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+        // Update the wishlist count
+        updateWishlistCount();
+      });
+    });
   });
 </script>
+
 
  

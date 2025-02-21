@@ -64,7 +64,7 @@
     <div class="best-selling-products-lists">
       {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
         <div class="bs-product1">
-          <div class="bs-product-top-container">
+          <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
             <div class="bs-wishlists-icon">
               <div class="bs-wish-icons">
                 <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img">

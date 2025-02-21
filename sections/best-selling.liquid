@@ -67,7 +67,7 @@
           <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
             <div class="bs-wishlists-icon">
               <div class="bs-wish-icons">
-                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img">
+                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img"      data-product-id="{{ product.id }}>
                 <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view">
               </div>
             </div>
@@ -98,3 +98,11 @@
     </div>
   </div>
 </section>
+
+
+<style>
+  .wishlist-icon.active {
+  filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
+}
+
+  </style>

@@ -69,12 +69,12 @@
                 <div class="text-block-6">-{{ discount_percentage }}%</div>
               </div>
               <div class="wish-icons">
-                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="wish-img">
+                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="wish-img" data-product-id="{{ product.id }}" >
                 <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="quick-view">
               </div>
             </div>
             <div class="add-to-cart-btn-container">
-              <a href="{{ product.url }}" class="add-to-cart-btn w-button">Add to Cart</a>
+              <a href="{{ product.url }}" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">Add to Cart</a>
             </div>
           </div>
           <div class="product1-down">

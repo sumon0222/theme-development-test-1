@@ -112,23 +112,42 @@
     ]
   }  
 {% endschema %}
-<section class="categories-section" >
-    <div class="categories-wrapper">
-      <div class="best-selling-up-block">
-        <div class="todays-sale category-text">{{ section.settings.subheading }}</div>
-        <div class="browse-by-category">
-          <h2 class="heading-3">{{ section.settings.heading }}</h2>
-        </div>
-      </div>
-      <div class="category-lists">
-        {% for block in section.blocks %}
-          <a href="{{ block.settings.link }}" class="category-items" style="--svg-normal-color: {{ block.settings.svg_normal_color }}; --svg-hover-color: {{ block.settings.svg_hover_color }};">
-            <div class="svg-image-category w-embed">
-              {{ block.settings.svg_code | replace: 'currentColor', 'var(--svg-normal-color)' }}
-            </div>
-            <div class="text-block-9">{{ block.settings.title }}</div>
-          </a>
-        {% endfor %}
+<section class="categories-section">
+  <div class="categories-wrapper">
+    <div class="best-selling-up-block">
+      <div class="todays-sale category-text">{{ section.settings.subheading }}</div>
+      <div class="browse-by-category">
+        <h2 class="heading-3">{{ section.settings.heading }}</h2>
       </div>
     </div>
-  </section>
+    <div class="category-lists">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="category-items"
+          style="--svg-normal-color: {{ block.settings.svg_normal_color }}; --svg-hover-color: {{ block.settings.svg_hover_color }};">
+          <div class="svg-image-category w-embed">
+            {{ block.settings.svg_code }}
+          </div>
+          <div class="text-block-9">{{ block.settings.title }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Default SVG Color */
+  .svg-image-category svg path,
+  .svg-image-category svg line,
+  .svg-image-category svg rect {
+    stroke: var(--svg-normal-color) !important;
+    fill: var(--svg-normal-color)!important;
+  }
+
+  /* Change SVG color on hover */
+  .category-items:hover .svg-image-category svg path,
+  .category-items:hover .svg-image-category svg line,
+  .category-items:hover .svg-image-category svg rect {
+    stroke: var(--svg-hover-color)!important;
+    fill: var(--svg-hover-color)!important;
+  }
+</style>

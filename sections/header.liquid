@@ -307,49 +307,6 @@
       });
     }
 
-    // Function to get wishlist count from localStorage
-    function updateWishlistCount() {
-      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-      document.getElementById("wishlist-count").textContent = wishlist.length;
-    }
-
-    // Function to get cart count from Shopify cart API
-    function updateCartCount() {
-      fetch('/cart.js')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById("cart-count").textContent = data.item_count;
-        })
-        .catch(error => console.error("Error fetching cart count:", error));
-    }
-
-    // Update counts on page load
-    updateWishlistCount();
-    updateCartCount();
-
-    // Event listener to update wishlist when heart icon is clicked
-    document.querySelectorAll('.wish-icons').forEach(icon => {
-      icon.addEventListener("click", function() {
-        // Get the product ID from the parent or dataset
-        const productId = this.closest('.bs-product1').getAttribute('data-product-id');
-
-        // Get the existing wishlist from localStorage or initialize an empty array
-        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-        // Add or remove product from wishlist
-        if (wishlist.includes(productId)) {
-          wishlist = wishlist.filter(id => id !== productId);  // Remove from wishlist
-        } else {
-          wishlist.push(productId);  // Add to wishlist
-        }
-
-        // Save updated wishlist back to localStorage
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-        // Update the wishlist count
-        updateWishlistCount();
-      });
-    });
   });
 </script>
 

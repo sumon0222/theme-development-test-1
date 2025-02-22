@@ -21,10 +21,10 @@ display:block !important;
   display: inline-block; /* Ensure the container wraps the icon and count */
 }
 
-.wishlist-count-container {
+.wishlist-count {
   position: absolute; /* Position the count absolutely */
   top: -10px; /* Adjust this value to move the count up */
-  right: +20px; /* Adjust this value to move the count to the right */
+  right: 50%; /* Adjust this value to move the count to the right */
   background-color: red; /* Background color for the count */
   color: white; /* Text color for the count */
   border-radius: 50%; /* Make the count circular */

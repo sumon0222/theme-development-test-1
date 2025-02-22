@@ -25,10 +25,21 @@ display:block !important;
   top: -10px; /* Adjust this value to move the count up */
   right: 50%; /* Adjust this value to move the count to the right */
   color: red;
-  font-size: 12px; /* Adjust font size as needed */
+  font-size: 14px; /* Adjust font size as needed */
   font-weight: bold; /* Make the count text bold */
 }
+.cart-container {
+  position: relative; /* Make the container a positioning context */
+}
 
+.cart-count {
+  position: absolute; /* Position the count absolutely */
+  top: -10px; /* Adjust this value to move the count up */
+  right: 50%; /* Adjust this value to move the count to the right */
+  color: red;
+  font-size: 14px; /* Adjust font size as needed */
+  font-weight: bold; /* Make the count text bold */
+}
 
 
 .header-menu {

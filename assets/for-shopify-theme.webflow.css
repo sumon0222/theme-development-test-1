@@ -23,7 +23,8 @@ display:block !important;
 .wishlist-count {
   position: absolute; /* Position the count absolutely */
   top: -15px; /* Adjust this value to move the count up */
-  right: 0px; /* Adjust this value to move the count to the right */
+  left: 50%; /* Move the count to the horizontal center */
+  transform: translateX(-50%); /* Center the count horizontally */
   color: red;
   font-size: 14px; /* Adjust font size as needed */
   font-weight: bold; /* Make the count text bold */
@@ -35,7 +36,8 @@ display:block !important;
 .cart-count {
   position: absolute; /* Position the count absolutely */
   top: -15px; /* Adjust this value to move the count up */
-  right: 0px; /* Adjust this value to move the count to the right */
+ left: 50%; /* Move the count to the horizontal center */
+  transform: translateX(-50%); /* Center the count horizontally */
   color: red;
   font-size: 14px; /* Adjust font size as needed */
   font-weight: bold; /* Make the count text bold */

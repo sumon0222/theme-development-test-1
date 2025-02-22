@@ -52,10 +52,10 @@
       <div class="ms-text">{{ section.settings.sub_heading }}</div>
       <h2 class="ms-header">{{ section.settings.section_heading }}</h2>
       <div class="ms-timer-div">
-        <div class="days-ms" id="days">00</div>
-        <div class="hours-ms days-ms" id="hours">00</div>
-        <div class="minutes-ms days-ms" id="minutes">00</div>
-        <div class="seconds-ms days-ms" id="seconds">00</div>
+        <div class="days-ms" id="days-ms">00</div>
+        <div class="hours-ms days-ms" id="hours-ms">00</div>
+        <div class="minutes-ms days-ms" id="minutes-ms">00</div>
+        <div class="seconds-ms days-ms" id="seconds-ms">00</div>
       </div>
       <a href="{{ section.settings.button_link | default: '#' }}" class="ms-buy-now-btn w-button">
         {{ section.settings.button_text }}
@@ -83,10 +83,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (timeLeft <= 0) {
         // If the countdown is over, display "00" for all values
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
+        document.getElementById("days-ms").innerHTML = "00";
+        document.getElementById("hours-ms").innerHTML = "00";
+        document.getElementById("minutes-ms").innerHTML = "00";
+        document.getElementById("seconds-ms").innerHTML = "00";
         return;
       }
 
@@ -97,10 +97,10 @@ document.addEventListener("DOMContentLoaded", function() {
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
       // Update the timer display
-      document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
-      document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
-      document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
-      document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
+      document.getElementById("days-ms").innerHTML = days.toString().padStart(2, "0");
+      document.getElementById("hours-ms").innerHTML = hours.toString().padStart(2, "0");
+      document.getElementById("minutes-ms").innerHTML = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds-ms").innerHTML = seconds.toString().padStart(2, "0");
     }
 
     // Update the timer every second

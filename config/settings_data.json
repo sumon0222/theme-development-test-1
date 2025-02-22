@@ -70,7 +70,8 @@
         "settings": {
           "heading": "Flash Sales",
           "collection": "all-products",
-          "countdown_date": "2025-12-31"
+          "countdown_date": "2025-12-31",
+          "product_limit": 4
         }
       },
       "category": {
@@ -155,7 +156,7 @@
           "section_heading": "Enhance Your Music Experience",
           "sub_heading": "Categories",
           "section_image": "shopify://shop_images/jbl2.png",
-          "countdown_end_date": "2025-12-31",
+          "countdown_end_date": "2026-12-31",
           "button_text": "Buy Now!",
           "button_link": ""
         }

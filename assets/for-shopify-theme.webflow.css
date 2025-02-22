@@ -1,12 +1,3 @@
-.language-drpdwn-toggle {
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  flex-flow: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px 0 0;
-  display: block;
-}
 
 .add-to-cart-btn{
 display:none !important;
@@ -22,6 +13,32 @@ display:block !important;
 }
 .our-product2:hover .add-to-cart-btn{
 display:block !important;
+}
+
+/* count styling/ 
+.wishlist-container {
+  position: relative; /* Make the container a positioning context */
+  display: inline-block; /* Ensure the container wraps the icon and count */
+}
+
+.wishlist-count-container {
+  position: absolute; /* Position the count absolutely */
+  top: -10px; /* Adjust this value to move the count up */
+  right: -10px; /* Adjust this value to move the count to the right */
+  background-color: red; /* Background color for the count */
+  color: white; /* Text color for the count */
+  border-radius: 50%; /* Make the count circular */
+  width: 20px; /* Width of the count container */
+  height: 20px; /* Height of the count container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px; /* Adjust font size as needed */
+  font-weight: bold; /* Make the count text bold */
+}
+
+.wishlist-icon {
+  display: block; /* Ensure the icon is displayed as a block element */
 }
 
 

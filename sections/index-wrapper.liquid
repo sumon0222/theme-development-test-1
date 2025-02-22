@@ -1,6 +1,65 @@
+{% comment %}
+  This is the custom section that acts as a wrapper for the index page.
+{% endcomment %}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'hero' %}
+      {% section 'hero' %}
+    {% when 'flash-sale-section' %}
+      {% section 'flash-sale-section' %}
+    {% when 'category' %}
+      {% section 'category' %}
+    {% when 'best-selling' %}
+      {% section 'best-selling' %}
+    {% when 'category-music' %}
+      {% section 'category-music' %}
+    {% when 'all-product' %}
+      {% section 'all-product' %}
+    {% when 'service-quality' %}
+      {% section 'service-quality' %}
+  {% endcase %}
+{% endfor %}
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Index Wrapper",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "hero",
+      "name": "Hero Section"
+    },
+    {
+      "type": "flash-sale-section",
+      "name": "Flash Sale Section"
+    },
+    {
+      "type": "category",
+      "name": "Category Section"
+    },
+    {
+      "type": "best-selling",
+      "name": "Best Selling Section"
+    },
+    {
+      "type": "category-music",
+      "name": "Category Music Section"
+    },
+    {
+      "type": "all-product",
+      "name": "All Product Section"
+    },
+    {
+      "type": "service-quality",
+      "name": "Service Quality Section"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Index Layout",
+      "blocks": []
+    }
+  ]
+}
 {% endschema %}

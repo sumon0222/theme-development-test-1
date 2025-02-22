@@ -71,6 +71,7 @@
   </div>
 </section>
 
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   function startCountdown(endDate) {
     // Parse the end date in UTC format to avoid time zone issues
@@ -110,3 +111,4 @@ document.addEventListener("DOMContentLoaded", function() {
   // Start the countdown with the end date from the section settings
   startCountdown("{{ section.settings.countdown_end_date }}");
 });
+</script>

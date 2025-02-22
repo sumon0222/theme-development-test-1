@@ -15,7 +15,7 @@ display:block !important;
 display:block !important;
 }
 
-/* count styling/ 
+/* count styling */ 
 .wishlist-container {
   position: relative; /* Make the container a positioning context */
   display: inline-block; /* Ensure the container wraps the icon and count */

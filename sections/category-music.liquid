@@ -71,38 +71,42 @@
   </div>
 </section>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    function startCountdown(endDate) {
-      let countDownDate = new Date(endDate).getTime();
+document.addEventListener("DOMContentLoaded", function() {
+  function startCountdown(endDate) {
+    // Parse the end date in UTC format to avoid time zone issues
+    const countDownDate = new Date(`${endDate}T23:59:59Z`).getTime();
 
-      function updateTimer() {
-        let now = new Date().getTime();
-        let timeLeft = countDownDate - now;
+    function updateTimer() {
+      const now = new Date().getTime();
+      const timeLeft = countDownDate - now;
 
-        if (timeLeft <= 0) {
-          document.getElementById("days").innerHTML = "00";
-          document.getElementById("hours").innerHTML = "00";
-          document.getElementById("minutes").innerHTML = "00";
-          document.getElementById("seconds").innerHTML = "00";
-          return;
-        }
-
-        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
-        document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
-        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
-        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
+      if (timeLeft <= 0) {
+        // If the countdown is over, display "00" for all values
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+        return;
       }
 
-      setInterval(updateTimer, 1000);
-      updateTimer();
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      // Update the timer display
+      document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
+      document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
     }
 
-    startCountdown("{{ section.settings.countdown_end_date }}");
-  });
-</script>
+    // Update the timer every second
+    setInterval(updateTimer, 1000);
+    updateTimer(); // Initial call to avoid delay
+  }
+
+  // Start the countdown with the end date from the section settings
+  startCountdown("{{ section.settings.countdown_end_date }}");
+});

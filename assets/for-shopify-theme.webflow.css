@@ -37,9 +37,6 @@ display:block !important;
   font-weight: bold; /* Make the count text bold */
 }
 
-.wishlist-icon {
-  display: block; /* Ensure the icon is displayed as a block element */
-}
 
 
 .header-menu {

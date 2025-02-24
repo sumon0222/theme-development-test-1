@@ -1,55 +1,25 @@
 {% schema %}
 {
   "name": "Hero Section",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Sidebar Navigation"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_1",
-      "label": "Electronics Link",
-      "default": "Electronics"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_2",
-      "label": "Home & Lifestyle Link",
-      "default": "Home & Lifestyle"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_3",
-      "label": "Medicine Link",
-      "default": "Medicine"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_4",
-      "label": "Sports & Outdoor Link",
-      "default": "Sports & Outdoor"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_5",
-      "label": "Baby’s & Toys Link",
-      "default": "Baby’s & Toys"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_6",
-      "label": "Groceries & Pets Link",
-      "default": "Groceries & Pets"
-    },
-    {
-      "type": "text",
-      "id": "sidebar_nav_7",
-      "label": "Health & Beauty Link",
-      "default": "Health & Beauty"
-    }
-  ],
+  "settings": [],
   "blocks": [
+    {
+      "type": "category",
+      "name": "Sidebar Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_name",
+          "label": "Category Name",
+          "default": "Category"
+        },
+        {
+          "type": "url",
+          "id": "category_link",
+          "label": "Category Link"
+        }
+      ]
+    },
     {
       "type": "slide",
       "name": "Slide",
@@ -95,12 +65,24 @@
       "name": "Hero Section",
       "blocks": [
         {
-          "type": "slide",
+          "type": "category",
           "settings": {
-            "background_image": "",
-            "slide_title": "iPhone 14 Series",
-            "heading": "Up to 10% off Voucher",
-            "button_text": "Shop Now"
+            "category_name": "Electronics",
+            "category_link": "#"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Home & Lifestyle",
+            "category_link": "#"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Medicine",
+            "category_link": "#"
           }
         },
         {
@@ -118,18 +100,22 @@
 }
 {% endschema %}
 
+
+
 <section class="hero-section">
   <div class="hero-container">
     <!-- Sidebar Navigation -->
-    <div class="hero-sidebar-container">
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_1 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_2 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_3 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_4 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_5 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_6 }}</a>
-      <a href="#" class="sidebar-nav-list">{{ section.settings.sidebar_nav_7 }}</a>
-    </div>
+    <!-- Sidebar Navigation -->
+        <div class="hero-sidebar-container">
+          {% for block in section.blocks %}
+            {% if block.type == "category" %}
+              <a href="{{ block.settings.category_link }}" class="sidebar-nav-list">
+                {{ block.settings.category_name }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
 
     <!-- Hero Slider -->
     <div class="hero-content-slider">

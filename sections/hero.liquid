@@ -1,54 +1,7 @@
 {% schema %}
 {
   "name": "Hero Section",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Default Sidebar Categories"
-    },
-    {
-      "type": "text",
-      "id": "default_category_1",
-      "label": "Category 1",
-      "default": "Electronics"
-    },
-    {
-      "type": "text",
-      "id": "default_category_2",
-      "label": "Category 2",
-      "default": "Home & Lifestyle"
-    },
-    {
-      "type": "text",
-      "id": "default_category_3",
-      "label": "Category 3",
-      "default": "Medicine"
-    },
-    {
-      "type": "text",
-      "id": "default_category_4",
-      "label": "Category 4",
-      "default": "Sports & Outdoor"
-    },
-    {
-      "type": "text",
-      "id": "default_category_5",
-      "label": "Category 5",
-      "default": "Baby’s & Toys"
-    },
-    {
-      "type": "text",
-      "id": "default_category_6",
-      "label": "Category 6",
-      "default": "Groceries & Pets"
-    },
-    {
-      "type": "text",
-      "id": "default_category_7",
-      "label": "Category 7",
-      "default": "Health & Beauty"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "category",
@@ -57,7 +10,8 @@
         {
           "type": "text",
           "id": "category_name",
-          "label": "Category Name"
+          "label": "Category Name",
+          "default": "Category"
         },
         {
           "type": "url",
@@ -111,6 +65,27 @@
       "name": "Hero Section",
       "blocks": [
         {
+          "type": "category",
+          "settings": {
+            "category_name": "Electronics",
+            "category_link": "#"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Home & Lifestyle",
+            "category_link": "#"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Medicine",
+            "category_link": "#"
+          }
+        },
+        {
           "type": "slide",
           "settings": {
             "background_image": "",
@@ -125,55 +100,45 @@
 }
 {% endschema %}
 
+
+
 <section class="hero-section">
   <div class="hero-container">
     <!-- Sidebar Navigation -->
-    <div class="hero-sidebar-container">
-      {% assign dynamic_categories = section.blocks | where: "type", "category" %}
-      
-      {% if dynamic_categories.size > 0 %}
-        <!-- Show dynamically added categories -->
-        {% for block in dynamic_categories %}
-          <a href="{{ block.settings.category_link }}" class="sidebar-nav-list">
-            {{ block.settings.category_name }}
-          </a>
-        {% endfor %}
-      {% else %}
-        <!-- Show default categories when no dynamic categories are added -->
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_1 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_2 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_3 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_4 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_5 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_6 }}</a>
-        <a href="#" class="sidebar-nav-list">{{ section.settings.default_category_7 }}</a>
-      {% endif %}
-    </div>
+    <!-- Sidebar Navigation -->
+        <div class="hero-sidebar-container">
+          {% for block in section.blocks %}
+            {% if block.type == "category" %}
+              <a href="{{ block.settings.category_link }}" class="sidebar-nav-list">
+                {{ block.settings.category_name }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
 
     <!-- Hero Slider -->
     <div class="hero-content-slider">
       <div class="slider hero-slider w-slider">
         <div class="mask w-slider-mask">
           {% for block in section.blocks %}
-            {% if block.type == "slide" %}
-              <div class="slide slide-{{ forloop.index }} w-slide" style="
-                  background-image: url('{{ block.settings.background_image | image_url }}');
-              ">
-                <div class="slider-text-img">
-                  {% if block.settings.image != blank %}
-                    <img loading="lazy" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt | escape }}" class="image-4">
-                  {% else %}
-                    <img loading="lazy" src="{{ 'hero-apple-logo.png' | asset_url }}" alt="Default Image" class="image-4">
-                  {% endif %}
-                  <div class="text-block-3">{{ block.settings.slide_title }}</div>
-                </div>
-                <h1 class="hero-heading">{{ block.settings.heading }}</h1>
-                <a href="{{ block.settings.button_link }}" class="slider-text-link-arrow w-inline-block">
-                  <div class="text-block-4">{{ block.settings.button_text }}</div>
-                  <img loading="lazy" src="{{ 'slider-icons-arrow-right.png' | asset_url }}" alt="Arrow Icon" class="image-5">
-                </a>
+            <div class="slide slide-{{ forloop.index }} w-slide" style="
+                background-image: url('{{ block.settings.background_image | image_url }}');
+            ">
+              <div class="slider-text-img">
+                {% if block.settings.image != blank %}
+                  <img loading="lazy" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt | escape }}" class="image-4">
+                {% else %}
+                  <img loading="lazy" src="{{ 'hero-apple-logo.png' | asset_url }}" alt="Default Image" class="image-4">
+                {% endif %}
+                <div class="text-block-3">{{ block.settings.slide_title }}</div>
               </div>
-            {% endif %}
+              <h1 class="hero-heading">{{ block.settings.heading }}</h1>
+              <a href="{{ block.settings.button_link }}" class="slider-text-link-arrow w-inline-block">
+                <div class="text-block-4">{{ block.settings.button_text }}</div>
+                <img loading="lazy" src="{{ 'slider-icons-arrow-right.png' | asset_url }}" alt="Arrow Icon" class="image-5">
+              </a>
+            </div>
           {% endfor %}
         </div>
         <div class="left-arrow w-slider-arrow-left">
@@ -184,16 +149,13 @@
         </div>
         <div class="slide-nav w-slider-nav w-round">
           {% for block in section.blocks %}
-            {% if block.type == "slide" %}
-              <div class="w-slider-dot {% if forloop.first %}w-active{% endif %}" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" role="button" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" style="margin: 5px;"></div>
-            {% endif %}
+            <div class="w-slider-dot {% if forloop.first %}w-active{% endif %}" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" role="button" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" style="margin: 5px;"></div>
           {% endfor %}
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

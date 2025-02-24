@@ -27,6 +27,11 @@
       "default": "/"
     },
     {
+      "type": "image_picker",
+      "id": "ps5_bg",
+      "label": "PlayStation 5 Background Image"
+    },
+    {
       "type": "text",
       "id": "women_collection_title",
       "label": "Women’s Collection Title",
@@ -43,6 +48,11 @@
       "id": "women_collection_link",
       "label": "Women’s Collection Link",
       "default": "/"
+    },
+    {
+      "type": "image_picker",
+      "id": "women_collection_bg",
+      "label": "Women’s Collection Background Image"
     },
     {
       "type": "text",
@@ -63,6 +73,11 @@
       "default": "/"
     },
     {
+      "type": "image_picker",
+      "id": "speakers_bg",
+      "label": "Speakers Background Image"
+    },
+    {
       "type": "text",
       "id": "perfume_title",
       "label": "Perfume Title",
@@ -79,6 +94,11 @@
       "id": "perfume_link",
       "label": "Perfume Link",
       "default": "/"
+    },
+    {
+      "type": "image_picker",
+      "id": "perfume_bg",
+      "label": "Perfume Background Image"
     }
   ],
   "presets": [
@@ -89,7 +109,6 @@
 }
 {% endschema %}
 
-
 <section class="new-arrival-section">
   <div class="new-arrival-wrapper">
     <div class="new-arrival-up-block">
@@ -99,24 +118,24 @@
       </div>
     </div>
     <div class="new-arrival-down-block">
-      <div class="new-arrival-down-left-block">
+      <div class="new-arrival-down-left-block" style="background-image: url('{{ section.settings.ps5_bg | image_url }}');">
         <h3 class="playstation-head">{{ section.settings.ps5_title }}</h3>
         <div class="playstation-text">{{ section.settings.ps5_description }}</div>
         <a href="{{ section.settings.ps5_link }}" class="playstation-shop-link">Shop Now</a>
       </div>
       <div class="new-arrival-down-lright-block">
-        <div class="new-arrival-down-lright-up-block">
+        <div class="new-arrival-down-lright-up-block" style="background-image: url('{{ section.settings.women_collection_bg | image_url }}');">
           <h3 class="playstation-head">{{ section.settings.women_collection_title }}</h3>
           <div class="playstation-text">{{ section.settings.women_collection_description }}</div>
           <a href="{{ section.settings.women_collection_link }}" class="playstation-shop-link">Shop Now</a>
         </div>
         <div class="new-arrival-down-lright-down-block">
-          <div class="new-adrd-left">
+          <div class="new-adrd-left" style="background-image: url('{{ section.settings.speakers_bg | image_url }}');">
             <h3 class="playstation-head">{{ section.settings.speakers_title }}</h3>
             <div class="playstation-text playstation0speaker-text">{{ section.settings.speakers_description }}</div>
             <a href="{{ section.settings.speakers_link }}" class="playstation-shop-link">Shop Now</a>
           </div>
-          <div class="new-adrd-right">
+          <div class="new-adrd-right" style="background-image: url('{{ section.settings.perfume_bg | image_url }}');">
             <h3 class="playstation-head">{{ section.settings.perfume_title }}</h3>
             <div class="playstation-text playstation0speaker-text">{{ section.settings.perfume_description }}</div>
             <a href="{{ section.settings.perfume_link }}" class="playstation-shop-link">Shop Now</a>

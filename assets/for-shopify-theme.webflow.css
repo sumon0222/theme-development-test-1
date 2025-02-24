@@ -404,6 +404,7 @@ display:block !important;
   padding-top: 40px;
   padding-left: 0;
   padding-right: 17px;
+  text-transform:capitalize;
   display: flex;
 }
 

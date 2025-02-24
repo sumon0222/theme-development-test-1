@@ -15,6 +15,7 @@
         "slide_MtKN9g": {
           "type": "slide",
           "settings": {
+            "background_image": "shopify://shop_images/hero-slider-background.png",
             "slide_title": "iPhone 14 Series",
             "heading": "Up to 10% off Voucher",
             "button_text": "Shop Now",
@@ -39,8 +40,8 @@
       "type": "flash-sale-section",
       "settings": {
         "heading": "Flash Sales",
-        "collection": "",
-        "countdown_date": "2024-12-31",
+        "collection": "all-products",
+        "countdown_date": "2026-12-31",
         "product_limit": 4
       }
     },
@@ -56,7 +57,7 @@
       "settings": {
         "section_heading": "Best Selling Products",
         "sub_heading": "This Month",
-        "collection": "",
+        "collection": "all-products",
         "button_text": "View All",
         "button_link": "",
         "product_limit": 4
@@ -67,6 +68,7 @@
       "settings": {
         "section_heading": "Enhance Your Music Experience",
         "sub_heading": "Categories",
+        "section_image": "shopify://shop_images/jbl2.png",
         "countdown_end_date": "2025-12-31",
         "button_text": "Buy Now!",
         "button_link": ""
@@ -77,7 +79,7 @@
       "settings": {
         "section_heading": "Best Selling Products",
         "sub_heading": "This Month",
-        "collection": "",
+        "collection": "all-products",
         "button_text": "View All",
         "button_link": "",
         "product_limit": 4
@@ -90,15 +92,19 @@
         "ps5_title": "PlayStation 5",
         "ps5_description": "Black and White version of the PS5 coming out on sale.",
         "ps5_link": "/",
+        "ps5_bg": "shopify://shop_images/play_station5.png",
         "women_collection_title": "Women’s Collections",
         "women_collection_description": "Featured woman collections that give you another vibe.",
         "women_collection_link": "/",
+        "women_collection_bg": "shopify://shop_images/attractive-woman.png",
         "speakers_title": "Speakers",
         "speakers_description": "Amazon wireless speakers",
         "speakers_link": "/",
+        "speakers_bg": "shopify://shop_images/speakers.png",
         "perfume_title": "Perfume",
         "perfume_description": "GUCCI INTENSE OUD EDP",
-        "perfume_link": "/"
+        "perfume_link": "/",
+        "perfume_bg": "shopify://shop_images/gucci.png"
       }
     },
     "service-quality": {
@@ -106,10 +112,13 @@
       "settings": {
         "service1_title": "FREE AND FAST DELIVERY",
         "service1_description": "Free delivery for all orders over $140",
+        "service1_image": "shopify://shop_images/Services_1Services.png",
         "service2_title": "24/7 CUSTOMER SERVICE",
         "service2_description": "Friendly 24/7 customer support",
+        "service2_image": "shopify://shop_images/Services_1Services.png",
         "service3_title": "MONEY BACK GUARANTEE",
-        "service3_description": "We return money within 30 days"
+        "service3_description": "We return money within 30 days",
+        "service3_image": "shopify://shop_images/Services_1Services.png"
       }
     }
   },

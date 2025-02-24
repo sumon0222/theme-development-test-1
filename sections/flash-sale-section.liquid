@@ -107,27 +107,35 @@
 
 <script>
   // Countdown Timer
-  document.addEventListener('DOMContentLoaded', function () {
-    const countdownDate = new Date("{{ section.settings.countdown_date }}").getTime();
+ document.addEventListener('DOMContentLoaded', function () {
+  // Parse countdown date from Liquid
+  const countdownDateStr = "{{ section.settings.countdown_date }}";
+  const countdownDate = new Date(countdownDateStr + "T23:59:59").getTime(); // Ensure correct time zone handling
 
-    const timer = setInterval(function () {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if (distance <= 0) {
+      clearInterval(timer);
+      document.querySelector('.countdown-timer').innerHTML = "<h2>Sale Ended!</h2>";
+      return;
+    }
 
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance < 0) {
-        clearInterval(timer);
-        document.querySelector('.countdown-timer').innerHTML = "<h2>Sale Ended!</h2>";
-      }
-    }, 1000);
-  });
+    document.getElementById('days').innerText = days.toString().padStart(2, '0');
+    document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+  }
+
+  // Initial call to avoid 1-second delay
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+});
+
 </script>

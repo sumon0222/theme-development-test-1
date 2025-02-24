@@ -11,35 +11,106 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "blocks": {
+        "slide_MtKN9g": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "iPhone 14 Series",
+            "heading": "Up to 10% off Voucher",
+            "button_text": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_MtKN9g"
+      ],
+      "settings": {
+        "sidebar_nav_1": "Electronics",
+        "sidebar_nav_2": "Home & Lifestyle",
+        "sidebar_nav_3": "Medicine",
+        "sidebar_nav_4": "Sports & Outdoor",
+        "sidebar_nav_5": "Baby’s & Toys",
+        "sidebar_nav_6": "Groceries & Pets",
+        "sidebar_nav_7": "Health & Beauty"
+      }
     },
     "flash-sale-section": {
       "type": "flash-sale-section",
-      "settings": {}
+      "settings": {
+        "heading": "Flash Sales",
+        "collection": "",
+        "countdown_date": "2024-12-31",
+        "product_limit": 4
+      }
     },
     "category": {
       "type": "category",
-      "settings": {}
+      "settings": {
+        "subheading": "Categories",
+        "heading": "Browse By Category"
+      }
     },
     "best-selling": {
       "type": "best-selling",
-      "settings": {}
+      "settings": {
+        "section_heading": "Best Selling Products",
+        "sub_heading": "This Month",
+        "collection": "",
+        "button_text": "View All",
+        "button_link": "",
+        "product_limit": 4
+      }
     },
     "category-music": {
       "type": "category-music",
-      "settings": {}
+      "settings": {
+        "section_heading": "Enhance Your Music Experience",
+        "sub_heading": "Categories",
+        "countdown_end_date": "2025-12-31",
+        "button_text": "Buy Now!",
+        "button_link": ""
+      }
     },
     "all-product": {
       "type": "all-product",
-      "settings": {}
+      "settings": {
+        "section_heading": "Best Selling Products",
+        "sub_heading": "This Month",
+        "collection": "",
+        "button_text": "View All",
+        "button_link": "",
+        "product_limit": 4
+      }
     },
     "new-arrival": {
       "type": "new-arrival",
-      "settings": {}
+      "settings": {
+        "section_heading": "New Arrival",
+        "ps5_title": "PlayStation 5",
+        "ps5_description": "Black and White version of the PS5 coming out on sale.",
+        "ps5_link": "/",
+        "women_collection_title": "Women’s Collections",
+        "women_collection_description": "Featured woman collections that give you another vibe.",
+        "women_collection_link": "/",
+        "speakers_title": "Speakers",
+        "speakers_description": "Amazon wireless speakers",
+        "speakers_link": "/",
+        "perfume_title": "Perfume",
+        "perfume_description": "GUCCI INTENSE OUD EDP",
+        "perfume_link": "/"
+      }
     },
     "service-quality": {
       "type": "service-quality",
-      "settings": {}
+      "settings": {
+        "service1_title": "FREE AND FAST DELIVERY",
+        "service1_description": "Free delivery for all orders over $140",
+        "service2_title": "24/7 CUSTOMER SERVICE",
+        "service2_description": "Friendly 24/7 customer support",
+        "service3_title": "MONEY BACK GUARANTEE",
+        "service3_description": "We return money within 30 days"
+      }
     }
   },
   "order": [

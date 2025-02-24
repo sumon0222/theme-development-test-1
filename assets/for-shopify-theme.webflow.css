@@ -240,7 +240,7 @@ display:block !important;
 }
 
 .header-nav-wrapper {
-  grid-column-gap: 148px;
+  grid-column-gap: 202px;
   grid-row-gap: 148px;
   justify-content: center;
   align-items: center;

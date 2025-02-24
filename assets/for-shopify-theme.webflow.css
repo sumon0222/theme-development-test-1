@@ -714,6 +714,7 @@ display:block !important;
   grid-row-gap: 30px;
   flex-flow: row;
   display: flex;
+    flex-wrap: wrap;
 }
 
 .categories-wrapper {
@@ -772,6 +773,8 @@ display:block !important;
   padding-bottom: 24px;
   display: flex;
   color:#000000;
+  flex: 0 1 calc(16.66% - 20px); /* 100% / 6 items - gap/2 */
+    box-sizing: border-box;
 }
 
 .category-items:hover {

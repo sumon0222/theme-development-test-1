@@ -4,23 +4,6 @@
   "settings": [],
   "blocks": [
     {
-      "type": "category",
-      "name": "Sidebar Category",
-      "settings": [
-        {
-          "type": "text",
-          "id": "category_name",
-          "label": "Category Name",
-          "default": "Category"
-        },
-        {
-          "type": "url",
-          "id": "category_link",
-          "label": "Category Link"
-        }
-      ]
-    },
-    {
       "type": "slide",
       "name": "Slide",
       "settings": [
@@ -65,27 +48,6 @@
       "name": "Hero Section",
       "blocks": [
         {
-          "type": "category",
-          "settings": {
-            "category_name": "Electronics",
-            "category_link": "#"
-          }
-        },
-        {
-          "type": "category",
-          "settings": {
-            "category_name": "Home & Lifestyle",
-            "category_link": "#"
-          }
-        },
-        {
-          "type": "category",
-          "settings": {
-            "category_name": "Medicine",
-            "category_link": "#"
-          }
-        },
-        {
           "type": "slide",
           "settings": {
             "background_image": "",
@@ -100,22 +62,17 @@
 }
 {% endschema %}
 
-
-
 <section class="hero-section">
   <div class="hero-container">
     <!-- Sidebar Navigation -->
-    <!-- Sidebar Navigation -->
-        <div class="hero-sidebar-container">
-          {% for block in section.blocks %}
-            {% if block.type == "category" %}
-              <a href="{{ block.settings.category_link }}" class="sidebar-nav-list">
-                {{ block.settings.category_name }}
-              </a>
-            {% endif %}
-          {% endfor %}
-        </div>
-
+    <div class="hero-sidebar-container">
+      <!-- Dynamically fetch and display Shopify categories -->
+      {% for collection in collections %}
+        <a href="{{ collection.url }}" class="sidebar-nav-list">
+          {{ collection.title }}
+        </a>
+      {% endfor %}
+    </div>
 
     <!-- Hero Slider -->
     <div class="hero-content-slider">

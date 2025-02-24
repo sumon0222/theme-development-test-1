@@ -1,27 +1,70 @@
 {% schema %}
 {
-  "name": "Category Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Categories"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Browse By Category"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Category Section"
-    }
-  ]
+    "name": "Category Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Categories"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Browse By Category"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "category",
+        "name": "Category Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Category Name",
+            "default": "Phones"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Category Link"
+          },
+          {
+            "type": "image_picker",
+            "id": "svg_image",
+            "label": "Upload Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Category Section",
+        "blocks": [
+          {
+            "type": "category",
+            "settings": {
+              "title": "Phones",
+              "link": "#",
+              "svg_image": ""
+            }
+          },
+          {
+            "type": "category",
+            "settings": {
+              "title": "Laptops",
+              "link": "#",
+              "svg_image": ""
+            }
+          }
+        ]
+      }
+    ]
 }
 {% endschema %}
+
 
 <section class="categories-section">
   <div class="categories-wrapper">
@@ -32,20 +75,17 @@
       </div>
     </div>
     <div class="category-lists">
-      <!-- Dynamically fetch and display collections -->
-      {% for collection in collections %}
-        <a href="{{ collection.url }}" class="category-items"
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="category-items"
           style="--svg-normal-color:#000000; --svg-hover-color: #FFFFFF;">
           
-          <!-- Display Collection Image -->
-          {% if collection.image != blank %}
+          {% if block.settings.svg_image != blank %}
             <div class="svg-image-category">
-              <img src="{{ collection.image | image_url }}" class="svg-icon" alt="{{ collection.title }}">
+              <img src="{{ block.settings.svg_image | image_url }}" class="svg-icon" alt="{{ block.settings.title }}">
             </div>
           {% endif %}
           
-          <!-- Display Collection Title -->
-          <div class="text-block-9">{{ collection.title }}</div>
+          <div class="text-block-9">{{ block.settings.title }}</div>
         </a>
       {% endfor %}
     </div>

@@ -6,7 +6,7 @@
       "type": "text",
       "id": "section_heading",
       "label": "Section Heading",
-      "default": "all Products"
+      "default": "All Products"
     },
     {
       "type": "text",
@@ -50,7 +50,6 @@
 }
 {% endschema %}
 
-
 <section class="best-selling-products-section">
   <div class="best-selling-products-wrapper">
     <div class="best-selling-up-block">
@@ -64,52 +63,48 @@
     </div>
 
     <div class="best-selling-products-lists">
-      {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
-        <div class="bs-product1" data-product-id="{{ product.id }}">
-          <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
-            <div class="bs-wishlists-icon">
-              <div class="bs-wish-icons">
-                <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img">
-                <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view wishlist-icon" data-product-id="{{ product.id }}">
+      {% if collections[section.settings.collection] and collections[section.settings.collection].products.size > 0 %}
+        {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
+          <div class="bs-product1" data-product-id="{{ product.id }}">
+            <div class="bs-product-top-container" style="background-image: url('{{ product.featured_image | image_url }}');">
+              <div class="bs-wishlists-icon">
+                <div class="bs-wish-icons">
+                  <img loading="lazy" src="{{ 'eye-icon.png' | asset_url }}" alt="Quick View" class="wish-img">
+                  <img loading="lazy" src="{{ 'heart-icon.png' | asset_url }}" alt="Wishlist" class="quick-view wishlist-icon" data-product-id="{{ product.id }}">
+                </div>
               </div>
-            </div>
-            <div class="add-to-cart-btn-container">
-              <form method="post" action="/cart/add.js">
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="submit" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
+              <div class="add-to-cart-btn-container">
+                <button class="add-to-cart-btn w-button" data-product-id="{{ product.variants.first.id }}">
                   Add to Cart
                 </button>
-              </form>
+              </div>
+            </div>
+            <div class="bs-product-down-container">
+              <a href="{{ product.url }}" class="product-title-link">
+                <div class="text-block-7">{{ product.title }}</div>
+              </a>
+              <div class="pricings">
+                {% if product.compare_at_price > product.price %}
+                  <div class="old-price"><s>{{ product.compare_at_price | money }}</s></div>
+                {% endif %}
+                <div class="new-price">{{ product.price | money }}</div>
+              </div>
+              <div class="rating">
+                <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating" class="image-11">
+                <div class="text-block-10">({{ product.metafields.reviews.count | default: 0 }})</div>
+              </div>
             </div>
           </div>
-          <div class="bs-product-down-container">
-            <!-- Make the product title clickable -->
-            <a href="{{ product.url }}" class="product-title-link">
-              <div class="text-block-7">{{ product.title }}</div>
-            </a>
-            <div class="pricings">
-              {% if product.compare_at_price > product.price %}
-                <div class="new-price">{{ product.compare_at_price | money }}</div>
-              {% endif %}
-              <div class="old-price">{{ product.price | money }}</div>
-            </div>
-            <div class="rating">
-              <img loading="lazy" src="{{ 'Four Star.png' | asset_url }}" alt="Rating" class="image-11">
-              <div class="text-block-10">({{ product.metafields.reviews.count | default: 0 }})</div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       {% else %}
         <p>No products available in this collection.</p>
-      {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
 
-
-
 <style>
-  /* Wishlist icon active state */
+/* Wishlist icon active state */
 .wishlist-icon.active {
   filter: invert(36%) sepia(84%) saturate(2000%) hue-rotate(350deg);
 }
@@ -119,15 +114,14 @@
   background-color: #4CAF50;  /* Green color for added state */
   color: red;
 }
+
 /* Style for the product title link */
 .product-title-link {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit the color from the parent */
+  text-decoration: none;
+  color: inherit;
 }
 
 .product-title-link:hover {
-  text-decoration: underline; /* Add underline on hover */
-   /* Change color on hover (optional) */
+  text-decoration: underline;
 }
-
-  </style>
+</style>

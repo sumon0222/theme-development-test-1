@@ -88,6 +88,11 @@
                 {% endif %}
                 <span class="wishlist-count" id="wishlist-count">0</span>
               </a>
+              <!-- Wishlist Hover List -->
+              <div class="wishlist-hover-list" id="wishlist-list" style="display: none;">
+                <h4>Your Wishlist</h4>
+                <ul id="wishlist-items"></ul>
+              </div>
             </div>
 
             <!-- Cart Icon with Count -->
@@ -112,6 +117,11 @@
                 {% endif %}
                 <span class="cart-count" id="cart-count">0</span>
               </a>
+              <!-- Cart Hover List -->
+              <div class="cart-hover-list" id="cart-list" style="display: none;">
+                <h4>Your Cart</h4>
+                <ul id="cart-items"></ul>
+              </div>
             </div>
           </div>
         </div>
@@ -198,6 +208,15 @@
       .then(response => response.json())
       .then(data => {
         document.getElementById('cart-count').textContent = data.item_count;
+
+        // Display Cart Items in Hover List
+        const cartList = document.getElementById('cart-items');
+        cartList.innerHTML = '';
+        data.items.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${item.quantity} x ${item.title}`;
+          cartList.appendChild(listItem);
+        });
       });
 
     // Update Wishlist Count (assuming wishlist is stored in cart attributes)
@@ -206,22 +225,38 @@
       .then(data => {
         let wishlistCount = data.attributes.wishlist ? data.attributes.wishlist.split(',').length : 0;
         document.getElementById('wishlist-count').textContent = wishlistCount;
+
+        // Display Wishlist Items in Hover List
+        const wishlistList = document.getElementById('wishlist-items');
+        wishlistList.innerHTML = '';
+        if (data.attributes.wishlist) {
+          const wishlistItems = data.attributes.wishlist.split(',');
+          wishlistItems.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            wishlistList.appendChild(listItem);
+          });
+        }
       });
 
-    // Show Cart & Wishlist Items on Hover
+    // Hover Event for Wishlist and Cart
     const wishlistContainer = document.querySelector('.wishlist-container');
     const cartContainer = document.querySelector('.cart-container');
 
-    // Hover event for Wishlist
+    // Show Wishlist List on Hover
     wishlistContainer.addEventListener('mouseenter', function() {
-      // Display wishlist items (Replace with actual wishlist data from cart attributes)
-      alert('Wishlist items will be displayed here.');
+      document.getElementById('wishlist-list').style.display = 'block';
+    });
+    wishlistContainer.addEventListener('mouseleave', function() {
+      document.getElementById('wishlist-list').style.display = 'none';
     });
 
-    // Hover event for Cart
+    // Show Cart List on Hover
     cartContainer.addEventListener('mouseenter', function() {
-      // Display cart items (Replace with actual cart data)
-      alert('Cart items will be displayed here.');
+      document.getElementById('cart-list').style.display = 'block';
+    });
+    cartContainer.addEventListener('mouseleave', function() {
+      document.getElementById('cart-list').style.display = 'none';
     });
   });
 </script>

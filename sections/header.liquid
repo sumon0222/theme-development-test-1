@@ -1,262 +1,314 @@
+{% schema %}
+{
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sale_banner_text",
+        "label": "Sale Banner Text",
+        "default": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!"
+      },
+      {
+        "type": "text",
+        "id": "shop_now_text",
+        "label": "Shop Now Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "shop_now_link",
+        "label": "Shop Now Link",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "logo_text",
+        "label": "Logo Text",
+        "default": "Exclusive"
+      },
+      {
+        "type": "image_picker",
+        "id": "hamburger_icon",
+        "label": "Hamburger Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "wishlist_icon",
+        "label": "Wishlist Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_icon",
+        "label": "Cart Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "close_icon",
+        "label": "Close Icon"
+      },
+      {
+        "type": "text",
+        "id": "search_placeholder",
+        "label": "Search Placeholder",
+        "default": "Search Here!"
+      },
+      {
+        "type": "text",
+        "id": "categories_title",
+        "label": "Categories Title",
+        "default": "Categories"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Main Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "categories_menu",
+        "label": "Categories Menu"
+      },
+      {
+        "type": "url",
+        "id": "wishlist_url",
+        "label": "Wishlist URL",
+        "default": "/"
+      },
+      {
+        "type": "url",
+        "id": "cart_url",
+        "label": "Cart URL",
+        "default": "/"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Header"
+      }
+    ]
+}
+{% endschema %}
+
 <section class="header">
-  <div class="header-container">
-    <!-- Sale Banner -->
-    <div class="header-top-wrapper">
-      <div class="header-top-left">
-        <div class="header-top-text">{{ section.settings.sale_banner_text }}</div>
-        <a href="{{ section.settings.shop_now_link }}" class="header-top-left-link">{{ section.settings.shop_now_text }}</a>
-      </div>
-    </div>
-
-    <!-- Main Navigation -->
-    <div class="header-nav">
-      <div class="header-nav-wrapper">
-        <div class="header-nav-left">
-          <!-- Hamburger Icon -->
-          {% if section.settings.hamburger_icon %}
-            <img 
-              height="auto"
-              width="auto"
-              src="{{ section.settings.hamburger_icon | image_url: '100x' }}" 
-              alt="Hamburger Menu"
-              class="hamburger-icon"
-            >
-          {% else %}
-            <img 
-              height="auto"
-              width="auto"
-              src="{{ 'hamburger.png' | asset_url }}" 
-              alt="Default Hamburger Menu"
-              class="hamburger-icon"
-            >
-          {% endif %}
-
-          <!-- Logo -->
-          <a href="{{ routes.root_url }}" class="header-link-logo w-inline-block">
-            <div class="header-logo-text">{{ section.settings.logo_text }}</div>
-          </a>
-
-          <!-- Menu Links -->
-          <div class="header-menu">
-            {% if section.settings.menu.links.size > 0 %}
-              {% for link in section.settings.menu.links %}
-                <a href="{{ link.url }}" class="menu-list">{{ link.title }}</a>
-              {% endfor %}
-            {% else %}
-              <a href="#" class="menu-list">Home</a>
-              <a href="#" class="menu-list">Shop</a>
-              <a href="#" class="menu-list">Sign Up</a>
-              <a href="#" class="menu-list">Contact</a>
-            {% endif %}
-          </div>
+    <div class="header-container">
+      <!-- Sale Banner -->
+      <div class="header-top-wrapper">
+        <div class="header-top-left">
+          <div class="header-top-text">{{ section.settings.sale_banner_text }}</div>
+          <a href="{{ section.settings.shop_now_link }}" class="header-top-left-link">{{ section.settings.shop_now_text }}</a>
         </div>
-
-        <!-- Search and Icons -->
-        <div class="header-nav-right">
-          <div class="search-form-block w-form">
-            <form action="{{ routes.search_url }}" method="get" class="form">
-              <input
-                class="text-field-2 w-input"
-                type="text"
-                name="q"
-                placeholder="{{ section.settings.search_placeholder }}"
-                aria-label="Search"
+      </div>
+  
+      <!-- Main Navigation -->
+      <div class="header-nav">
+        <div class="header-nav-wrapper">
+          <div class="header-nav-left">
+            <!-- Hamburger Icon -->
+            {% if section.settings.hamburger_icon %}
+              <img 
+                height="auto"
+                width="auto"
+                src="{{ section.settings.hamburger_icon | image_url: '100x' }}" 
+                alt="Hamburger Menu"
+                class="hamburger-icon"
               >
-            </form>
-          </div>
-
-          <div class="wishlist-cart-icon">
-            <!-- Wishlist Icon with Count -->
-            <div class="wishlist-container">
-              <a href="{{ section.settings.wishlist_url }}" class="wishlist-icon-wrapper">
-                {% if section.settings.wishlist_icon %}
-                  <img 
-                    height="auto"
-                    width="auto"
-                    src="{{ section.settings.wishlist_icon | image_url: '50x' }}" 
-                    alt="Wishlist"
-                    class="wishlist-icon"
-                  >
-                {% else %}
-                  <img 
-                    height="auto"
-                    width="auto"
-                    src="{{ 'wishlist.png' | asset_url }}" 
-                    alt="Default Wishlist"
-                    class="wishlist-icon"
-                  >
-                {% endif %}
-                <span class="wishlist-count" id="wishlist-count">0</span>
-              </a>
-              <!-- Wishlist Hover List -->
-              <div class="wishlist-hover-list" id="wishlist-list" style="display: none;">
-                <h4>Your Wishlist</h4>
-                <ul id="wishlist-items"></ul>
-              </div>
+            {% else %}
+              <img 
+                height="auto"
+                width="auto"
+                src="{{ 'hamburger.png' | asset_url }}" 
+                alt="Default Hamburger Menu"
+                class="hamburger-icon"
+              >
+            {% endif %}
+  
+            <!-- Logo -->
+            <a href="{{ routes.root_url }}" class="header-link-logo w-inline-block">
+              <div class="header-logo-text">{{ section.settings.logo_text }}</div>
+            </a>
+  
+            <!-- Menu Links -->
+            <div class="header-menu">
+              {% if section.settings.menu.links.size > 0 %}
+                {% for link in section.settings.menu.links %}
+                  <a href="{{ link.url }}" class="menu-list">{{ link.title }}</a>
+                {% endfor %}
+              {% else %}
+                <a href="#" class="menu-list">Home</a>
+                <a href="#" class="menu-list">Shop</a>
+                <a href="#" class="menu-list">Sign Up</a>
+                <a href="#" class="menu-list">Contact</a>
+              {% endif %}
             </div>
+          </div>
+  
+          <!-- Search and Icons -->
+          <div class="header-nav-right">
+            <div class="search-form-block w-form">
+              <form action="{{ routes.search_url }}" method="get" class="form">
+                <input
+                  class="text-field-2 w-input"
+                  type="text"
+                  name="q"
+                  placeholder="{{ section.settings.search_placeholder }}"
+                  aria-label="Search"
+                >
+              </form>
+            </div>
+            <div class="wishlist-cart-icon">
+              <!-- Wishlist Icon with Count -->
+             <div class="wishlist-container">
+                <a href="{{ section.settings.wishlist_url }}">
+                  {% if section.settings.wishlist_icon %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ section.settings.wishlist_icon | image_url: '50x' }}" 
+                      alt="Wishlist"
+                      class="wishlist-icon"
+                    >
+                  {% else %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ 'wishlist.png' | asset_url }}" 
+                      alt="Default Wishlist"
+                      class="wishlist-icon"
+                    >
+                  {% endif %}
+                  <span class="wishlist-count" id="wishlist-count">0</span>
+                </a>
+              </div>
 
-            <!-- Cart Icon with Count -->
-            <div class="cart-container">
-              <a href="{{ section.settings.cart_url }}" class="cart-icon-wrapper">
-                {% if section.settings.cart_icon %}
-                  <img 
-                    height="auto"
-                    width="auto"
-                    src="{{ section.settings.cart_icon | image_url: '50x' }}" 
-                    alt="Cart"
-                    class="cart-icon"
-                  >
-                {% else %}
-                  <img 
-                    height="auto"
-                    width="auto"
-                    src="{{ 'Cart.png' | asset_url }}" 
-                    alt="Default Cart"
-                    class="cart-icon"
-                  >
-                {% endif %}
-                <span class="cart-count" id="cart-count">0</span>
-              </a>
-              <!-- Cart Hover List -->
-              <div class="cart-hover-list" id="cart-list" style="display: none;">
-                <h4>Your Cart</h4>
-                <ul id="cart-items"></ul>
+              <!-- Cart Icon with Count -->
+              <div class="cart-container">
+                <a href="{{ section.settings.cart_url }}">
+                  {% if section.settings.cart_icon %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ section.settings.cart_icon | image_url: '50x' }}" 
+                      alt="Cart"
+                      class="cart-icon"
+                    >
+                  {% else %}
+                    <img 
+                      height="auto"
+                      width="auto"
+                      src="{{ 'Cart.png' | asset_url }}" 
+                      alt="Default Cart"
+                      class="cart-icon"
+                    >
+                  {% endif %}
+                  <span class="cart-count" id="cart-count">0</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Mobile Popup Menu -->
-    <div class="header-popup-container">
-      <div class="head-popup-wrapper">
-        {% if section.settings.close_icon %}
-          <img 
-            height="auto"
-            width="auto"
-            src="{{ section.settings.close_icon | image_url: '50x' }}" 
-            alt="Close Menu"
-            class="image-3"
-          >
-        {% else %}
-          <img 
-            height="auto"
-            width="auto"
-            src="{{ 'close.png' | asset_url }}" 
-            alt="Default Close Menu"
-            class="image-3"
-          >
-        {% endif %}
-
-        <div class="header-popup-items">
-          <a href="{{ routes.root_url }}" class="header-link-logo w-inline-block">
-            <div class="header-popup-logo header-logo-text">{{ section.settings.logo_text }}</div>
-          </a>
-
-          <div class="search-form-block form-mobile-search w-form">
-            <form action="{{ routes.search_url }}" method="get" class="form">
-              <input
-                class="text-field-2 form-mobile-text-field w-input"
-                type="text"
-                name="q"
-                placeholder="{{ section.settings.search_placeholder }}"
-                aria-label="Search"
-              >
-            </form>
-          </div>
-
-          <div class="header-popup-nav">
-            {% if section.settings.menu.links.size > 0 %}
-              {% for link in section.settings.menu.links %}
-                <a href="{{ link.url }}" class="menu-list head-popup-menu-lists">{{ link.title }}</a>
+  
+      <!-- Mobile Popup Menu -->
+      <div class="header-popup-container">
+        <div class="head-popup-wrapper">
+          {% if section.settings.close_icon %}
+            <img 
+              height="auto"
+              width="auto"
+              src="{{ section.settings.close_icon | image_url: '50x' }}" 
+              alt="Close Menu"
+              class="image-3"
+            >
+          {% else %}
+            <img 
+              height="auto"
+              width="auto"
+              src="{{ 'close.png' | asset_url }}" 
+              alt="Default Close Menu"
+              class="image-3"
+            >
+          {% endif %}
+  
+          <div class="header-popup-items">
+            <a href="{{ routes.root_url }}" class="header-link-logo w-inline-block">
+              <div class="header-popup-logo header-logo-text">{{ section.settings.logo_text }}</div>
+            </a>
+  
+            <div class="search-form-block form-mobile-search w-form">
+              <form action="{{ routes.search_url }}" method="get" class="form">
+                <input
+                  class="text-field-2 form-mobile-text-field w-input"
+                  type="text"
+                  name="q"
+                  placeholder="{{ section.settings.search_placeholder }}"
+                  aria-label="Search"
+                >
+              </form>
+            </div>
+  
+            <div class="header-popup-nav">
+              {% if section.settings.menu.links.size > 0 %}
+                {% for link in section.settings.menu.links %}
+                  <a href="{{ link.url }}" class="menu-list head-popup-menu-lists">{{ link.title }}</a>
+                {% endfor %}
+              {% else %}
+                <a href="#" class="menu-list head-popup-menu-lists">Home</a>
+                <a href="#" class="menu-list head-popup-menu-lists">Shop</a>
+                <a href="#" class="menu-list head-popup-menu-lists">Sign Up</a>
+                <a href="#" class="menu-list head-popup-menu-lists">Contact Us</a>
+              {% endif %}
+            </div>
+  
+            <a href="{{ section.settings.shop_now_link }}" class="best-selling-view-all-btn view-all-products-btn w-button">
+              {{ section.settings.shop_now_text }}
+            </a>
+  
+            <h3 class="categories-popup">{{ section.settings.categories_title }}</h3>
+            
+            {% if section.settings.categories_menu.links.size > 0 %}
+              {% for link in section.settings.categories_menu.links %}
+                <a href="{{ link.url }}" class="sidebar-nav-list pop-nav-lists">{{ link.title }}</a>
               {% endfor %}
             {% else %}
-              <a href="#" class="menu-list head-popup-menu-lists">Home</a>
-              <a href="#" class="menu-list head-popup-menu-lists">Shop</a>
-              <a href="#" class="menu-list head-popup-menu-lists">Sign Up</a>
-              <a href="#" class="menu-list head-popup-menu-lists">Contact Us</a>
+              <a href="#" class="sidebar-nav-list pop-nav-lists">Category 1</a>
+              <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
+              <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
+              <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
             {% endif %}
           </div>
-
-          <a href="{{ section.settings.shop_now_link }}" class="best-selling-view-all-btn view-all-products-btn w-button">
-            {{ section.settings.shop_now_text }}
-          </a>
-
-          <h3 class="categories-popup">{{ section.settings.categories_title }}</h3>
-          
-          {% if section.settings.categories_menu.links.size > 0 %}
-            {% for link in section.settings.categories_menu.links %}
-              <a href="{{ link.url }}" class="sidebar-nav-list pop-nav-lists">{{ link.title }}</a>
-            {% endfor %}
-          {% else %}
-            <a href="#" class="sidebar-nav-list pop-nav-lists">Category 1</a>
-            <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
-            <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
-            <a href="#" class="sidebar-nav-list pop-nav-lists">Category 2</a>
-          {% endif %}
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Update Cart Count
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('cart-count').textContent = data.item_count;
+    // Select elements
+    const hamburger = document.querySelector(".hamburger-icon");
+    const closeIcon = document.querySelector(".image-3");
+    const popupMenu = document.querySelector(".header-popup-container");
 
-        // Display Cart Items in Hover List
-        const cartList = document.getElementById('cart-items');
-        cartList.innerHTML = '';
-        data.items.forEach(item => {
-          const listItem = document.createElement('li');
-          listItem.textContent = `${item.quantity} x ${item.title}`;
-          cartList.appendChild(listItem);
-        });
+    // Ensure elements exist before adding event listeners
+    if (hamburger && closeIcon && popupMenu) {
+      // Open Popup
+      hamburger.addEventListener("click", function() {
+        popupMenu.style.display = "flex"; 
+        setTimeout(() => {
+          popupMenu.classList.add("active");  // Add active class for animation
+        }, 10);
       });
 
-    // Update Wishlist Count (assuming wishlist is stored in cart attributes)
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(data => {
-        let wishlistCount = data.attributes.wishlist ? data.attributes.wishlist.split(',').length : 0;
-        document.getElementById('wishlist-count').textContent = wishlistCount;
-
-        // Display Wishlist Items in Hover List
-        const wishlistList = document.getElementById('wishlist-items');
-        wishlistList.innerHTML = '';
-        if (data.attributes.wishlist) {
-          const wishlistItems = data.attributes.wishlist.split(',');
-          wishlistItems.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item;
-            wishlistList.appendChild(listItem);
-          });
-        }
+      // Close Popup
+      closeIcon.addEventListener("click", function() {
+        popupMenu.classList.remove("active");  // Remove active class to trigger animation
+        setTimeout(() => {
+          popupMenu.style.display = "none";  // Hide the popup after transition
+        }, 300);
       });
+    }
 
-    // Hover Event for Wishlist and Cart
-    const wishlistContainer = document.querySelector('.wishlist-container');
-    const cartContainer = document.querySelector('.cart-container');
-
-    // Show Wishlist List on Hover
-    wishlistContainer.addEventListener('mouseenter', function() {
-      document.getElementById('wishlist-list').style.display = 'block';
-    });
-    wishlistContainer.addEventListener('mouseleave', function() {
-      document.getElementById('wishlist-list').style.display = 'none';
-    });
-
-    // Show Cart List on Hover
-    cartContainer.addEventListener('mouseenter', function() {
-      document.getElementById('cart-list').style.display = 'block';
-    });
-    cartContainer.addEventListener('mouseleave', function() {
-      document.getElementById('cart-list').style.display = 'none';
-    });
   });
 </script>
+
+
+ 

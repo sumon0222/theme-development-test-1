@@ -74,9 +74,9 @@
               </div>
             </div>
             <div class="add-to-cart-btn-container">
-              <form method="post" action="/cart/add">
+              <form method="post" action="/cart/add.js">
                 <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="button" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
+                <button type="submit" class="add-to-cart-btn w-button" data-product-id="{{ product.id }}">
                   Add to Cart
                 </button>
               </form>

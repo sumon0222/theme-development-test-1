@@ -26,15 +26,7 @@
       "block_order": [
         "slide_MtKN9g"
       ],
-      "settings": {
-        "sidebar_nav_1": "Electronics",
-        "sidebar_nav_2": "Home & Lifestyle",
-        "sidebar_nav_3": "Medicine",
-        "sidebar_nav_4": "Sports & Outdoor",
-        "sidebar_nav_5": "Baby’s & Toys",
-        "sidebar_nav_6": "Groceries & Pets",
-        "sidebar_nav_7": "Health & Beauty"
-      }
+      "settings": {}
     },
     "flash-sale-section": {
       "type": "flash-sale-section",
@@ -77,7 +69,7 @@
     "all-product": {
       "type": "all-product",
       "settings": {
-        "section_heading": "Best Selling Products",
+        "section_heading": "All Products",
         "sub_heading": "This Month",
         "collection": "all-products",
         "button_text": "View All",

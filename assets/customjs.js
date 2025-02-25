@@ -1,17 +1,59 @@
+
+//cart and wishlist count 
+
 document.addEventListener("DOMContentLoaded", function() {
   // Function to get wishlist from localStorage
   function getWishlist() {
-    return JSON.parse(localStorage.getItem("wishlist")) || [];
+    return JSON.parse(localStorage.getItem('wishlist')) || [];
+  }
+
+  // Function to get cart from localStorage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  }
+
+  // Function to update cart count
+  function updateCartCount() {
+    let cart = getCart();
+    document.getElementById("cart-count").textContent = cart.length;
   }
 
   // Function to update wishlist count
   function updateWishlistCount() {
     let wishlist = getWishlist();
-    let wishlistCountElement = document.getElementById("wishlist-count");
-    if (wishlistCountElement) {
-      wishlistCountElement.textContent = wishlist.length;
-    }
+    document.getElementById("wishlist-count").textContent = wishlist.length;
   }
+
+  // Handle Add to Cart button click
+  document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+    button.addEventListener("click", function() {
+      const productId = this.getAttribute("data-product-id");
+      let cart = getCart();
+
+      if (cart.includes(productId)) {
+        // Remove product from cart
+        cart = cart.filter(id => id !== productId);
+        this.classList.remove("added");
+        this.textContent = "Add to Cart";
+      } else {
+        // Add product to cart
+        cart.push(productId);
+        this.classList.add("added");
+        this.textContent = "Added to Cart";
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    });
+
+    // Initialize button state
+    const productId = button.getAttribute("data-product-id");
+    let cart = getCart();
+    if (cart.includes(productId)) {
+      button.classList.add("added");
+      button.textContent = "Added to Cart";
+    }
+  });
 
   // Handle Wishlist icon click
   document.querySelectorAll(".wishlist-icon").forEach(icon => {
@@ -29,61 +71,16 @@ document.addEventListener("DOMContentLoaded", function() {
         this.classList.add("active");
       }
 
-      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
       updateWishlistCount();
     });
 
-    // Initialize wishlist icon state
+    // Initialize icon state
     const productId = icon.getAttribute("data-product-id");
-    if (getWishlist().includes(productId)) {
+    let wishlist = getWishlist();
+    if (wishlist.includes(productId)) {
       icon.classList.add("active");
     }
-  });
-
-  // Function to update the actual cart count from Shopify
-  function updateCartCount() {
-    fetch("/cart.js")
-      .then(response => response.json())
-      .then(cart => {
-        let cartCountElement = document.getElementById("cart-count");
-        if (cartCountElement) {
-          cartCountElement.textContent = cart.item_count;
-        }
-      })
-      .catch(error => console.error("Error fetching cart:", error));
-  }
-
-  // Handle Add to Cart button click
-  document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-    button.addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent page reload
-
-      const productId = this.getAttribute("data-product-id");
-
-      fetch("/cart/add.js", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: productId, quantity: 1 }) // Send product ID
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Product added to cart:", data);
-        
-        // Change button style
-        this.classList.add("added");
-        this.textContent = "Added to Cart";
-
-        // Update actual Shopify cart count
-        updateCartCount();
-        
-        // Reset button text after a delay (optional)
-        setTimeout(() => {
-          this.textContent = "Add to Cart";
-          this.classList.remove("added");
-        }, 2000);
-      })
-      .catch(error => console.error("Error adding to cart:", error));
-    });
   });
 
   // Initial cart and wishlist count update

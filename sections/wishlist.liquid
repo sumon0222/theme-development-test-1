@@ -19,6 +19,45 @@
   </div>
 </section>
 
+<style>
+  .wishlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.wishlist-btn.active {
+    color: red;
+}
+
+.wishlist-section {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.wishlist-items {
+    display: grid;
+    gap: 20px;
+}
+
+.wishlist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.remove-wishlist {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+  </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const removeButtons = document.querySelectorAll(".remove-wishlist");

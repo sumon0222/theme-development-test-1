@@ -3,27 +3,59 @@
 <section class="wishlist-section">
   <h1>Your Wishlist</h1>
 
-  {% if wishlist.size > 0 %}
-    <div class="wishlist-items">
-      {% for product_id in wishlist %}
-        {% assign product = all_products[product_id] %}
-        {% if product %}
-          <div class="wishlist-item">
-            <a href="{{ product.url }}">
-              <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}">
-              <h2>{{ product.title }}</h2>
-            </a>
-            <button class="remove-wishlist" data-product-id="{{ product.id }}">Remove</button>
-          </div>
-        {% else %}
-          <p>Product not found: {{ product_id }}</p>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>Your wishlist is empty.</p>
-  {% endif %}
+  <div class="wishlist-items">
+    {% for product_id in wishlist %}
+      {% assign product = all_products[product_id] %}
+      {% if product %}
+        <div class="wishlist-item">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}">
+            <h2>{{ product.title }}</h2>
+          </a>
+          <button class="remove-wishlist" data-product-id="{{ product.id }}">Remove</button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 </section>
+
+<style>
+  .wishlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  .wishlist-btn.active {
+    color: red;
+  }
+
+  .wishlist-section {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .wishlist-items {
+    display: grid;
+    gap: 20px;
+  }
+
+  .wishlist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .remove-wishlist {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

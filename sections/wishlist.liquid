@@ -1,11 +1,11 @@
-{% assign wishlist_json = customer.metafields.custom.wishlist | default: "[]" %}
+{% assign wishlist = customer.metafields.custom.wishlist | default: "[]" | parse_json %}
 
 <section class="wishlist-section">
   <h1>Your Wishlist</h1>
 
   <div class="wishlist-items">
-    {% for product_id in wishlist_json %}
-      {% assign product = collections.all.products | where: "id", product_id | first %}
+    {% for product_id in wishlist %}
+      {% assign product = all_products[product_id] %}
       {% if product %}
         <div class="wishlist-item">
           <a href="{{ product.url }}">
@@ -59,12 +59,9 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const wishlistJson = "{{ customer.metafields.custom.wishlist | default: "[]" }}";
-    let wishlist = JSON.parse(wishlistJson);
+    let wishlist = JSON.parse({{ customer.metafields.custom.wishlist | default: "[]" | json }});
 
-    const removeButtons = document.querySelectorAll(".remove-wishlist");
-
-    removeButtons.forEach(button => {
+    document.querySelectorAll(".remove-wishlist").forEach(button => {
         button.addEventListener("click", function () {
             const productId = this.getAttribute("data-product-id");
             wishlist = wishlist.filter(id => id !== productId);

@@ -5,7 +5,7 @@
 
   <div class="wishlist-items">
     {% for product_id in wishlist %}
-      {% assign product = all_products[product_id] %}
+      {% assign product = collections.all.products | where: "id", product_id | first %}
       {% if product %}
         <div class="wishlist-item">
           <a href="{{ product.url }}">

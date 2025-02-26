@@ -21,7 +21,7 @@
           "categories_title": "Categories",
           "menu": "",
           "categories_menu": "",
-          "wishlist_url": "/",
+          "wishlist_url": "shopify://pages/wishlist-page",
           "cart_url": "/"
         }
       },

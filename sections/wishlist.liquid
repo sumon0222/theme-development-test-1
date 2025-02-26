@@ -16,6 +16,8 @@
         </div>
       {% endif %}
     {% endfor %}
+    <pre>{{ customer.metafields.custom.wishlist | default: "[]" | parse_json | json }}</pre>
+
   </div>
 </section>
 

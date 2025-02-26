@@ -1,6 +1,38 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+{% assign wishlist = customer.metafields.custom.wishlist | default: "[]" | parse_json %}
+
+<section class="wishlist-section">
+  <h1>Your Wishlist</h1>
+
+  <div class="wishlist-items">
+    {% for product_id in wishlist %}
+      {% assign product = all_products[product_id] %}
+      {% if product %}
+        <div class="wishlist-item">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}">
+            <h2>{{ product.title }}</h2>
+          </a>
+          <button class="remove-wishlist" data-product-id="{{ product.id }}">Remove</button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const removeButtons = document.querySelectorAll(".remove-wishlist");
+
+    removeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const productId = this.getAttribute("data-product-id");
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            
+            wishlist = wishlist.filter(id => id !== productId);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+            this.closest(".wishlist-item").remove();
+        });
+    });
+});
+</script>

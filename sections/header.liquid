@@ -157,7 +157,7 @@
             </div>
             <div class="wishlist-cart-icon">
               <!-- Wishlist Icon with Count -->
-             <div class="wishlist-container">
+             <div class="h-wishlist-container">
                 <a href="{{ section.settings.wishlist_url }}">
                   {% if section.settings.wishlist_icon %}
                     <img 
@@ -165,7 +165,7 @@
                       width="auto"
                       src="{{ section.settings.wishlist_icon | image_url: '50x' }}" 
                       alt="Wishlist"
-                      class="wishlist-icon"
+                      class="h-wishlist-icon"
                     >
                   {% else %}
                     <img 
@@ -173,7 +173,7 @@
                       width="auto"
                       src="{{ 'wishlist.png' | asset_url }}" 
                       alt="Default Wishlist"
-                      class="wishlist-icon"
+                      class="h-wishlist-icon"
                     >
                   {% endif %}
                   <span class="wishlist-counter" id="wishlist-counter">0</span>

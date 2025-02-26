@@ -19,7 +19,7 @@
           "logo_text": "Exclusive",
           "search_placeholder": "Search Here!",
           "categories_title": "Categories",
-          "menu": "",
+          "menu": "main-menu",
           "categories_menu": "",
           "wishlist_url": "shopify://pages/wishlist-page",
           "cart_url": "/"

@@ -1,10 +1,10 @@
-{% assign wishlist = customer.metafields.custom.wishlist | default: "[]" | parse_json %}
+{% assign wishlist_json = customer.metafields.custom.wishlist | default: "[]" %}
 
 <section class="wishlist-section">
   <h1>Your Wishlist</h1>
 
   <div class="wishlist-items">
-    {% for product_id in wishlist %}
+    {% for product_id in wishlist_json %}
       {% assign product = collections.all.products | where: "id", product_id | first %}
       {% if product %}
         <div class="wishlist-item">
@@ -25,51 +25,50 @@
     border: none;
     cursor: pointer;
     font-size: 1.5rem;
-}
+  }
 
-.wishlist-btn.active {
+  .wishlist-btn.active {
     color: red;
-}
+  }
 
-.wishlist-section {
+  .wishlist-section {
     max-width: 800px;
     margin: auto;
     padding: 20px;
-}
+  }
 
-.wishlist-items {
+  .wishlist-items {
     display: grid;
     gap: 20px;
-}
+  }
 
-.wishlist-item {
+  .wishlist-item {
     display: flex;
     align-items: center;
     gap: 10px;
-}
+  }
 
-.remove-wishlist {
+  .remove-wishlist {
     background: red;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-}
-
-  </style>
+  }
+</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const wishlistJson = "{{ customer.metafields.custom.wishlist | default: "[]" }}";
+    let wishlist = JSON.parse(wishlistJson);
+
     const removeButtons = document.querySelectorAll(".remove-wishlist");
 
     removeButtons.forEach(button => {
         button.addEventListener("click", function () {
             const productId = this.getAttribute("data-product-id");
-            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            
             wishlist = wishlist.filter(id => id !== productId);
             localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
             this.closest(".wishlist-item").remove();
         });
     });

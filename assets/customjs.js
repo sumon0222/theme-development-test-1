@@ -1,89 +1,75 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const wishlistIcons = document.querySelectorAll(".wishlist-icon");
+    
+    function getWishlist() {
+        return JSON.parse(localStorage.getItem("wishlist")) || [];
+    }
 
-//cart and wishlist count 
+    function saveWishlist(wishlist) {
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Function to get wishlist from localStorage
-  function getWishlist() {
-    return JSON.parse(localStorage.getItem('wishlist')) || [];
-  }
+    function updateWishlistUI() {
+        const wishlist = getWishlist();
+        wishlistIcons.forEach(icon => {
+            const productId = icon.getAttribute("data-product-id");
+            if (wishlist.includes(productId)) {
+                icon.classList.add("active");
+            } else {
+                icon.classList.remove("active");
+            }
+        });
 
-  // Function to get cart from localStorage
-  function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-  }
+        // Update Wishlist Counter
+        const wishlistCounter = document.querySelector(".wishlist-counter");
+        if (wishlistCounter) {
+            wishlistCounter.textContent = wishlist.length;
+        }
+    }
 
-  // Function to update cart count
-  function updateCartCount() {
-    let cart = getCart();
-    document.getElementById("cart-count").textContent = cart.length;
-  }
+    function toggleWishlist(productId) {
+        let wishlist = getWishlist();
 
-  // Function to update wishlist count
-  function updateWishlistCount() {
-    let wishlist = getWishlist();
-    document.getElementById("wishlist-count").textContent = wishlist.length;
-  }
+        if (wishlist.includes(productId)) {
+            wishlist = wishlist.filter(id => id !== productId);
+        } else {
+            wishlist.push(productId);
+        }
 
-  // Handle Add to Cart button click
-  document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-    button.addEventListener("click", function() {
-      const productId = this.getAttribute("data-product-id");
-      let cart = getCart();
+        saveWishlist(wishlist);
+        updateWishlistUI();
+        updateShopifyWishlist(wishlist);
+    }
 
-      if (cart.includes(productId)) {
-        // Remove product from cart
-        cart = cart.filter(id => id !== productId);
-        this.classList.remove("added");
-        this.textContent = "Add to Cart";
-      } else {
-        // Add product to cart
-        cart.push(productId);
-        this.classList.add("added");
-        this.textContent = "Added to Cart";
-      }
+    async function updateShopifyWishlist(wishlist) {
+        try {
+            await fetch("/account", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    customer: {
+                        metafields: [
+                            {
+                                namespace: "custom",
+                                key: "wishlist",
+                                value: JSON.stringify(wishlist),
+                                type: "json"
+                            }
+                        ]
+                    }
+                })
+            });
+        } catch (error) {
+            console.error("Error updating wishlist:", error);
+        }
+    }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
+    wishlistIcons.forEach(icon => {
+        icon.addEventListener("click", function () {
+            const productId = this.getAttribute("data-product-id");
+            toggleWishlist(productId);
+        });
     });
 
-    // Initialize button state
-    const productId = button.getAttribute("data-product-id");
-    let cart = getCart();
-    if (cart.includes(productId)) {
-      button.classList.add("added");
-      button.textContent = "Added to Cart";
-    }
-  });
-
-  // Handle Wishlist icon click
-  document.querySelectorAll(".wishlist-icon").forEach(icon => {
-    icon.addEventListener("click", function() {
-      const productId = this.getAttribute("data-product-id");
-      let wishlist = getWishlist();
-
-      if (wishlist.includes(productId)) {
-        // Remove product from wishlist
-        wishlist = wishlist.filter(id => id !== productId);
-        this.classList.remove("active");
-      } else {
-        // Add product to wishlist
-        wishlist.push(productId);
-        this.classList.add("active");
-      }
-
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      updateWishlistCount();
-    });
-
-    // Initialize icon state
-    const productId = icon.getAttribute("data-product-id");
-    let wishlist = getWishlist();
-    if (wishlist.includes(productId)) {
-      icon.classList.add("active");
-    }
-  });
-
-  // Initial cart and wishlist count update
-  updateCartCount();
-  updateWishlistCount();
+    updateWishlistUI();
 });

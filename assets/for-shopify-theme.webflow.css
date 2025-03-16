@@ -20,7 +20,7 @@ display:block !important;
   position: relative; /* Make the container a positioning context */
 }
 
-.wishlist-count {
+.wishlist-counter {
   position: absolute; /* Position the count absolutely */
   top: -15px; /* Adjust this value to move the count up */
   left: 50%; /* Move the count to the horizontal center */

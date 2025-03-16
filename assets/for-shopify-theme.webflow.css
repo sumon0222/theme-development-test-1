@@ -16,7 +16,7 @@ display:block !important;
 }
 
 /* count styling */ 
-.wishlist-container {
+.h-wishlist-container {
   position: relative; /* Make the container a positioning context */
 }
 
